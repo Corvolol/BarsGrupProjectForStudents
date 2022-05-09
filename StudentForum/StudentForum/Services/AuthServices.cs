@@ -7,6 +7,11 @@
         {
             _iConfigeration = iConfiguration;
         }
+        /// <summary>
+        /// Получение jwt токена по логину
+        /// </summary>
+        /// <param name="login">логин(email)пользователя</param>
+        /// <returns></returns>
         public string GenerateJWT(string login)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
@@ -19,6 +24,20 @@
             };
             var token = tokenHandler.CreateJwtSecurityToken(jwtDescriptor);
             return tokenHandler.WriteToken(token);
+
+        }
+
+        public string HashingPassword(string password)
+        {
+            Encoding encoding =  Encoding.UTF8;
+            string solt = _iConfigeration["solt"]!;
+            string hashed = Convert.ToBase64String(KeyDerivation.Pbkdf2(
+            password: password,
+            salt: encoding.GetBytes(solt),
+            prf: KeyDerivationPrf.HMACSHA256,
+            iterationCount: 100000,
+            numBytesRequested: 256 / 8));
+            return hashed;
         }
     }
 }

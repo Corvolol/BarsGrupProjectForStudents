@@ -4,13 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
+using System.Security.Cryptography;
+
 
 namespace Model
 {
+   
     public class User
     {
-       [Key] 
-        public string Email { get; set; }
+        [Key]
+        public string Email { get; set; } = null!;
         
         public string NickName { get; set; }
 

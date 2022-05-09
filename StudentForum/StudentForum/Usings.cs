@@ -7,8 +7,10 @@ global using System.IdentityModel.Tokens.Jwt;
 global using System.Security.Claims;
 global using System.Text;
 global using Web;
-global using DataBase;
 global using Model;
+global using System.Security.Cryptography;
+global using Microsoft.AspNetCore.Cryptography.KeyDerivation;
+
 namespace Web
 {
 }

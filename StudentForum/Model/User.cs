@@ -15,18 +15,22 @@ namespace Model
         [Key]
         public string Email { get; set; } = null!;
         
-        public string NickName { get; set; }
+        public string? NickName { get; set; }
 
-        public string Name { get; set; }
+        public string? Name { get; set; }
 
-        public string LastName{ get; set; }
+        public string? LastName{ get; set; }
 
-        public int Groupnumber { get; set; }
+        public int? Groupnumber { get; set; }
 
-        public string Faculty { get; set; }
+        public string? Faculty { get; set; }
 
-        public string Speciality { get; set; }
+        public string? Speciality { get; set; }
 
-        public string Password { get; set; }
+        public string? Password { get; set; }
+
+        public List<Question>? Questions { get; set; }
+        public List<Answer>? Answers { get; set; }
+        public List<Review>? Reviews { get; set; }
     }
 }

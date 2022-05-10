@@ -7,17 +7,18 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Model
 {
-    internal class Teacher
+    public class Teacher
     {
-        [Key] public int Id { get; set; }
+        [Key] public int TeacherId { get; set; }
 
-        public string name { get; set; }
+        public string? name { get; set; }
 
-        public string cafedra { get; set; }
+        public string? cafedra { get; set; }
 
-        public string lesson { get; set; }
+        public string? lesson { get; set; }
 
-        public string login { get; set; }
+        public List<Review>? Reviews { get; set; }
+        public List<Tag>? Tags { get; set; }
     }
 
 }

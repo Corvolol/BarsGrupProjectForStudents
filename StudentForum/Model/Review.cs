@@ -7,13 +7,14 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Model
 {
-    internal class Tegi
+    public class Review
     {
         [Key] public int Id { get; set; }
 
-        public string name { get; set; }
+        public string? review { get; set; }
 
-       
+        public DateTime date { get; set; }
 
+        public Teacher? Teacher { get; set; }
     }
 }

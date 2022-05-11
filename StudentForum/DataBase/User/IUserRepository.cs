@@ -11,9 +11,9 @@ namespace DataBase
         public Task AddUSer(User user);
         public Task<User> GetUser(string email);
         public Task UpdateUser (User user);
-        public Task<bool> UpdateUser(string email,Question question);
-        public Task<bool> UpdateUser(string email,Answer answer);
-        public Task<bool> UpdateUser(string email,Review review);
-        public Task<bool> DeleteUser (string email);
+        public Task UpdateUser(string email,Question question);
+        public Task UpdateUser(string email,Answer answer);
+        public Task UpdateUser(string email,Review review);
+        public Task DeleteUser (string email);
     }
 }

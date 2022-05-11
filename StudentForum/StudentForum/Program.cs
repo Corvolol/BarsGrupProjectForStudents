@@ -35,7 +35,7 @@ builder.Services.AddSwaggerGen(swagger =>
                     }
                 }) ;
 });
-builder.Services.AddDbContext<Context>((options) => options.UseNpgsql(builder.Configuration["db"]));
+builder.Services.AddDbContext<Context>((options) => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")!));
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddSingleton<IAuthServices, AuthServices>();
 builder.Services.AddAuthorization();

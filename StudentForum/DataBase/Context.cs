@@ -16,9 +16,5 @@ namespace DataBase
             Database.EnsureDeleted();
             Database.EnsureCreated();
         }
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseSqlite("Data Source=studentforum.db");
-        }
     }
 }

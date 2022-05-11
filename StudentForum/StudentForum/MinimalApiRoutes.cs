@@ -30,7 +30,7 @@
                .WithTags("Post")
               .Produces<string>(StatusCodes.Status200OK);
 
-            app.MapGet("user", async (string email, IUserRepository repostiroty) => { return await repostiroty.GetUser(email); 
+            app.MapGet("user", async (HttpContext context, IUserRepository repostiroty) => { return await repostiroty.GetUser(context.User.Claims.ToArray()[0].Value); 
             })
               .WithTags("Get")
               .Produces<User>(StatusCodes.Status200OK)

@@ -20,16 +20,11 @@ namespace DataBase
             await _context.SaveChangesAsync();
         }
 
-        public async Task<bool> DeleteUser(string email)
+        public async Task DeleteUser(string email)
         {
             var user = await _context.Users.FirstOrDefaultAsync(x => x.Email == email);
-            if (user == null)
-            {
-                return false;
-            }
             _context.Users.Remove(user);
             await _context.SaveChangesAsync();
-            return true;
         }
 
         public async Task<User> GetUser(string email)
@@ -38,51 +33,31 @@ namespace DataBase
             return user;
         }
 
-        public async Task<bool> UpdateUser(User updateUser)
+        public async Task UpdateUser(User updateUser)
         {
-            var user = await _context.Users.FirstOrDefaultAsync(x => x.Email == updateUser.Email);
-            if (user == null)
-            {
-                return false;
-            }
-            user.Faculty = updateUser.Faculty;
-            user.NickName = updateUser.NickName;
-            user.Password = updateUser.Password;
-            user.Groupnumber = updateUser.Groupnumber;
-            return true;
+            _context.Users.Update(updateUser);
+            await _context.SaveChangesAsync();
         }
 
-        public async Task<bool> UpdateUser(string email, Question question)
+        public async Task UpdateUser(string email, Question question)
         {
             var user = await _context.Users.FirstOrDefaultAsync(x => x.Email == email);
-            if (user == null)
-            {
-                return false;
-            }
             user.Questions.Add(question);
-            return true;
+            await _context.SaveChangesAsync();
         }
 
-        public async Task<bool> UpdateUser(string email, Answer answer)
+        public async Task UpdateUser(string email, Answer answer)
         {
             var user = await _context.Users.FirstOrDefaultAsync(x => x.Email == email);
-            if (user == null)
-            {
-                return false;
-            }
             user.Answers.Add(answer);
-            return true;
+            await _context.SaveChangesAsync();
         }
 
-        public async Task<bool> UpdateUser(string email, Review review)
+        public async Task UpdateUser(string email, Review review)
         {
             var user = await _context.Users.FirstOrDefaultAsync(x => x.Email == email);
-            if (user == null)
-            {
-                return false;
-            }
             user.Reviews.Add(review);
-            return true;
+            await _context.SaveChangesAsync();
         }
     }
 }

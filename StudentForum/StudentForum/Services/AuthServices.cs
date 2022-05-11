@@ -39,5 +39,19 @@
             numBytesRequested: 256 / 8));
             return hashed;
         }
+        public User CreateUser(Registration registration)
+        {
+            return new User
+            {
+                Email = registration.Email,
+                Password = registration.Password,
+                Name = registration.Name,
+                LastName = registration.LastName,
+                NickName = registration.NickName,
+                Faculty = registration.Faculty,
+                Groupnumber = registration.Groupnumber,
+                Speciality= registration.Speciality
+            };
+        }
     }
 }

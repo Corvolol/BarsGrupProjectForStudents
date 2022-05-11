@@ -4,12 +4,13 @@
     {
         public static WebApplication AddMinimalApiRoutes(this WebApplication app)
         {
-            app.MapPost("/registration", async (User user, IAuthServices authService, IUserRepository repostiroty) =>
+            app.MapPost("/registration", async (Registration registration, IAuthServices authService, IUserRepository repostiroty) =>
             {
-                if (await repostiroty.GetUser(user.Email) == null)
+                if (await repostiroty.GetUser(registration.Email) == null)
                 {
-                    user.Password = authService.HashingPassword(user.Password);
-                    string token = authService.GenerateJWT(user.Email);
+                    registration.Password = authService.HashingPassword(registration.Password);
+                    string token = authService.GenerateJWT(registration.Email);
+                    User user = authService.CreateUser(registration);
                     await repostiroty.AddUSer(user);
                     return Results.Json(token);
                 }

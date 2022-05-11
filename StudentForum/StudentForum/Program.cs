@@ -31,9 +31,9 @@ builder.Services.AddSwaggerGen(swagger =>
                                     Id = "Bearer"
                                 }
                             },
-                            new string[] {}
+                           Array.Empty<string>()
                     }
-                });
+                }) ;
 });
 builder.Services.AddDbContext<Context>((options) => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")!));
 builder.Services.AddScoped<IUserRepository, UserRepository>();

@@ -38,18 +38,10 @@ namespace DataBase
             return user;
         }
 
-        public async Task<bool> UpdateUser(User updateUser)
+        public async Task UpdateUser(User updateUser)
         {
-            var user = await _context.Users.FirstOrDefaultAsync(x => x.Email == updateUser.Email);
-            if (user == null)
-            {
-                return false;
-            }
-            user.Faculty = updateUser.Faculty;
-            user.NickName = updateUser.NickName;
-            user.Password = updateUser.Password;
-            user.Groupnumber = updateUser.Groupnumber;
-            return true;
+            _context.Users.Update(updateUser);
+           await _context.SaveChangesAsync();
         }
 
         public async Task<bool> UpdateUser(string email, Question question)

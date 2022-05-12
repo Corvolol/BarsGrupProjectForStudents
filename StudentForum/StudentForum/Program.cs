@@ -35,7 +35,9 @@ builder.Services.AddSwaggerGen(swagger =>
                     }
                 });
 });
-builder.Services.AddDbContext<Context>((options) => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")!));
+builder.Services.AddDbContext<Context>(opts =>
+        opts.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"),
+            options => options.MigrationsAssembly("Web")));
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<ITeacherRepository, TeacherRepository>();
 builder.Services.AddScoped<IReviewRepository, ReviewRepository>();

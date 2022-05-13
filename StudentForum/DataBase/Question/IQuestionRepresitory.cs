@@ -1,8 +1,19 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-public class Class1
+namespace DataBase.Model
 {
-	public Class1()
-	{
-	}
+    internal interface IQuestionRepresitory
+
+    {
+        public Task AddQuestion(Question question);
+        public Task<List<Question>> GetAllQuestion();
+        public Task UpdateQuestion(Question question);
+        public Task DeleteQuestion(Question question);
+       
+
+    }
 }

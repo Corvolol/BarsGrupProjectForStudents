@@ -1,4 +1,6 @@
-﻿namespace Web
+﻿using Microsoft.AspNetCore.Mvc;
+
+namespace Web
 {
     public static class MinimalApiRoutes
     {
@@ -39,6 +41,96 @@
               .Produces<User>(StatusCodes.Status200OK)
               .RequireAuthorization();
 
+
+            app.MapGet("teacher", async (int teacherId, ITeacherRepository repostiroty) => {
+                return await repostiroty.GetTeacher(teacherId);
+            })
+              .WithTags("Get")
+              .Produces<Teacher>(StatusCodes.Status200OK)
+              .RequireAuthorization();
+
+
+            app.MapPost("/add-teacher", async (Teacher teacher, ITeacherRepository repostiroty) =>
+            {
+                if (await repostiroty.GetTeacher(teacher.TeacherId) == null)
+                {
+                    await repostiroty.AddTeacher(teacher);
+                    return Results.StatusCode(200);
+                }
+                return Results.StatusCode(400);
+            })
+              .WithTags("Post")
+              .Produces<string>(StatusCodes.Status200OK)
+              .RequireAuthorization();
+
+            app.MapDelete("/delete-teacher", async ([FromBody] Teacher teacher, ITeacherRepository repostiroty) =>
+            {
+                if (await repostiroty.GetTeacher(teacher.TeacherId) != null)
+                {
+                    await repostiroty.DeleteTeacher(teacher);
+                    return Results.StatusCode(200);
+                }
+                return Results.StatusCode(400);
+            })
+                .WithTags("Delete")
+                .Produces<string>(StatusCodes.Status200OK)
+                .RequireAuthorization();
+
+            app.MapPut("/update-teacher", async (Teacher teacher, ITeacherRepository repostiroty) =>
+            {
+                if (await repostiroty.GetTeacher(teacher.TeacherId) != null)
+                {
+                    await repostiroty.UpdateTeacher(teacher);
+                    return Results.StatusCode(200);
+                }
+                return Results.StatusCode(400);
+            })
+                .WithTags("Update")
+                .Produces<string>(StatusCodes.Status200OK)
+                .RequireAuthorization();
+
+            app.MapGet("review", async (int reviewId, IReviewRepository repostiroty) => {
+                return await repostiroty.GetReview(reviewId);
+            })
+              .WithTags("Get")
+              .Produces<Review>(StatusCodes.Status200OK)
+              .RequireAuthorization();
+
+            app.MapPost("/add-review", async (Review review, HttpContext context, IReviewRepository repostiroty) =>
+            {
+                await repostiroty.AddReview(review, context.User.Claims.ToArray()[0].Value);
+                return Results.StatusCode(200);
+            })
+              .WithTags("Post")
+              .Produces<string>(StatusCodes.Status200OK)
+              .RequireAuthorization();
+
+            app.MapDelete("/delete-review", async ([FromBody] Review review, HttpContext context, IReviewRepository repostiroty) =>
+            {
+                if (await repostiroty.GetReview(review.Id) != null)
+                {
+                    await repostiroty.DeleteReview(review, context.User.Claims.ToArray()[0].Value);
+                    return Results.StatusCode(200);
+                }
+                return Results.StatusCode(400);
+            })
+                .WithTags("Delete")
+                .Produces<string>(StatusCodes.Status200OK)
+                .RequireAuthorization();
+
+            app.MapPut("/update-review", async (Review review, HttpContext context, IReviewRepository repostiroty) =>
+            {
+                if (await repostiroty.GetReview(review.Id) != null)
+                {
+                    await repostiroty.UpdateReview(review, context.User.Claims.ToArray()[0].Value);
+                    return Results.StatusCode(200);
+                }
+                return Results.StatusCode(400);
+            })
+                .WithTags("Update")
+                .Produces<string>(StatusCodes.Status200OK)
+                .RequireAuthorization();
+
             app.MapPut("/user/addquestion", async (HttpContext context, IUserRepository repostiroty, Question question) =>
             {
                 await repostiroty.UpdateUser(context.User.Claims.ToArray()[0].Value, question);
@@ -78,7 +170,7 @@
                  return Results.StatusCode(StatusCodes.Status200OK);
              }).WithTags("Delete")
                .RequireAuthorization()
-               .Produces(StatusCodes.Status200OK); ;
+               .Produces(StatusCodes.Status200OK); 
             return app;
         }
     }

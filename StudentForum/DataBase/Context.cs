@@ -19,9 +19,6 @@ namespace DataBase
             //Database.EnsureDeleted();
             //Database.EnsureCreated();
         }
-
-        //dotnet ef migrations add Initial
-        //dotnet ef database update
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
 

@@ -13,7 +13,6 @@ namespace DataBase
         public DbSet<Teacher> Teachers { get; set; } = null!;
         public Context(DbContextOptions<Context>options) :base(options)
         {
-            Database.EnsureDeleted();
             Database.EnsureCreated();
         }
     }

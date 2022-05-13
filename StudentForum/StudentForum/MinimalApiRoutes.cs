@@ -78,7 +78,8 @@
                  return Results.StatusCode(StatusCodes.Status200OK);
              }).WithTags("Delete")
                .RequireAuthorization()
-               .Produces(StatusCodes.Status200OK); ;
+               .Produces(StatusCodes.Status200OK);
+
             return app;
         }
     }

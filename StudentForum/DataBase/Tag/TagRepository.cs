@@ -17,7 +17,7 @@ namespace DataBase
         public async Task AddTag(Tag tag)
         {
             await _context.Tags.AddAsync(tag);  
-            await _context.SaveChangesAsync();
+
         }
 
         public async Task DeleteTag(Tag tag)
@@ -37,6 +37,12 @@ namespace DataBase
         public async Task<Tag> GetTag(int tagId)
         {
             var tag = await _context.Tags.FirstOrDefaultAsync(x => x.TagId == tagId);
+            return tag;
+        }
+
+        public async Task <List<Tag>> GetAllTag()
+        {
+             var tag= await _context.Tags.ToListAsync();
             return tag;
         }
     }

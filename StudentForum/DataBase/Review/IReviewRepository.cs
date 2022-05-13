@@ -9,8 +9,8 @@ namespace DataBase
     public interface IReviewRepository
     {
         public Task AddReview(Review review);
-        public Task DeleteReview(Review review);
-        public Task UpdateReview(Review review);
+        public Task DeleteReview(Review review, User user);
+        public Task UpdateReview(Review review, User user);
         public Task<Review> GetReview(int reviewId);
     }
 }

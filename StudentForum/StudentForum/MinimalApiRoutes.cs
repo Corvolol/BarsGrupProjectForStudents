@@ -42,7 +42,8 @@ namespace Web
                 return await repostiroty.GetTeacher(teacherId);
             })
               .WithTags("Get")
-              .Produces<Teacher>(StatusCodes.Status200OK);
+              .Produces<Teacher>(StatusCodes.Status200OK)
+              .RequireAuthorization();
 
 
             app.MapPost("/add-teacher", async (Teacher teacher, ITeacherRepository repostiroty) =>
@@ -55,7 +56,8 @@ namespace Web
                 return Results.StatusCode(400);
             })
               .WithTags("Post")
-              .Produces<string>(StatusCodes.Status200OK);
+              .Produces<string>(StatusCodes.Status200OK)
+              .RequireAuthorization();
 
             app.MapDelete("/delete-teacher", async ([FromBody] Teacher teacher, ITeacherRepository repostiroty) =>
             {
@@ -67,7 +69,8 @@ namespace Web
                 return Results.StatusCode(400);
             })
                 .WithTags("Delete")
-                .Produces<string>(StatusCodes.Status200OK);
+                .Produces<string>(StatusCodes.Status200OK)
+                .RequireAuthorization();
 
             app.MapPut("/update-teacher", async (Teacher teacher, ITeacherRepository repostiroty) =>
             {
@@ -79,13 +82,15 @@ namespace Web
                 return Results.StatusCode(400);
             })
                 .WithTags("Update")
-                .Produces<string>(StatusCodes.Status200OK);
+                .Produces<string>(StatusCodes.Status200OK)
+                .RequireAuthorization();
 
             app.MapGet("review", async (int reviewId, IReviewRepository repostiroty) => {
                 return await repostiroty.GetReview(reviewId);
             })
               .WithTags("Get")
-              .Produces<Review>(StatusCodes.Status200OK);
+              .Produces<Review>(StatusCodes.Status200OK)
+              .RequireAuthorization();
 
             app.MapPost("/add-review", async (Review review, IReviewRepository repostiroty) =>
             {
@@ -97,31 +102,34 @@ namespace Web
                 return Results.StatusCode(400);
             })
               .WithTags("Post")
-              .Produces<string>(StatusCodes.Status200OK);
+              .Produces<string>(StatusCodes.Status200OK)
+              .RequireAuthorization();
 
-            app.MapDelete("/delete-review", async ([FromBody] Review review, IReviewRepository repostiroty) =>
+            app.MapDelete("/delete-review", async ([FromBody] Review review, User user, IReviewRepository repostiroty) =>
             {
                 if (await repostiroty.GetReview(review.Id) != null)
                 {
-                    await repostiroty.DeleteReview(review);
+                    await repostiroty.DeleteReview(review, user);
                     return Results.StatusCode(200);
                 }
                 return Results.StatusCode(400);
             })
                 .WithTags("Delete")
-                .Produces<string>(StatusCodes.Status200OK);
+                .Produces<string>(StatusCodes.Status200OK)
+                .RequireAuthorization();
 
-            app.MapPut("/update-review", async (Review review, IReviewRepository repostiroty) =>
+            app.MapPut("/update-review", async (Review review, User user, IReviewRepository repostiroty) =>
             {
                 if (await repostiroty.GetReview(review.Id) != null)
                 {
-                    await repostiroty.UpdateReview(review);
+                    await repostiroty.UpdateReview(review, user);
                     return Results.StatusCode(200);
                 }
                 return Results.StatusCode(400);
             })
                 .WithTags("Update")
-                .Produces<string>(StatusCodes.Status200OK);
+                .Produces<string>(StatusCodes.Status200OK)
+                .RequireAuthorization();
 
             return app;
         }

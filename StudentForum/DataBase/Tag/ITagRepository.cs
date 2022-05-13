@@ -12,5 +12,6 @@ namespace DataBase
         public Task DeleteTag(Tag tag);
         public Task UpdateTag(Tag tag);
         public Task<Tag> GetTag(int tagId);
+        public Task<List<Tag>> GetAllTag();
     }
 }

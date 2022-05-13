@@ -14,10 +14,13 @@ namespace DataBase
             _context = context;
         }
 
-        public async Task AddReview(Review review)
+        public async Task AddReview(Review review,string userEmail)
         {
-            await _context.Reviews.AddAsync(review);
-            await _context.SaveChangesAsync();
+            if (review.User?.Email == userEmail)
+            {
+                _context.Reviews.Add(review);
+                await _context.SaveChangesAsync();
+            }
         }
 
         public async Task DeleteReview(Review review, string userEmail)

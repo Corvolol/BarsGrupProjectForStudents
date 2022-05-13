@@ -16,7 +16,7 @@ namespace DataBase
 
         public async Task AddTeacher(Teacher teacher)
         {
-            await _context.Teachers.AddAsync(teacher);
+            _context.Teachers.Add(teacher);
             await _context.SaveChangesAsync();
         }
 

@@ -96,14 +96,10 @@ namespace Web
               .Produces<Review>(StatusCodes.Status200OK)
               .RequireAuthorization();
 
-            app.MapPost("/add-review", async (Review review, IReviewRepository repostiroty) =>
+            app.MapPost("/add-review", async (Review review, HttpContext context, IReviewRepository repostiroty) =>
             {
-                if (await repostiroty.GetReview(review.Id) == null)
-                {
-                    await repostiroty.AddReview(review);
-                    return Results.StatusCode(200);
-                }
-                return Results.StatusCode(400);
+                await repostiroty.AddReview(review, context.User.Claims.ToArray()[0].Value);
+                return Results.StatusCode(200);
             })
               .WithTags("Post")
               .Produces<string>(StatusCodes.Status200OK)

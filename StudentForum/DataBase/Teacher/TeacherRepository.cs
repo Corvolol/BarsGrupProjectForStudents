@@ -39,5 +39,11 @@ namespace DataBase
             var teacher = await _context.Teachers.FirstOrDefaultAsync(x => x.TeacherId == teacherId);
             return teacher;
         }
+
+        public async Task<List<Teacher>> GetAllTeachers()
+        {
+            var teachers = await _context.Teachers.ToListAsync();
+            return teachers;
+        }
     }
 }

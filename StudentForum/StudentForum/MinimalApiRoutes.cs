@@ -105,11 +105,11 @@ namespace Web
               .Produces<string>(StatusCodes.Status200OK)
               .RequireAuthorization();
 
-            app.MapDelete("/delete-review", async ([FromBody] Review review, User user, IReviewRepository repostiroty) =>
+            app.MapDelete("/delete-review", async ([FromBody] Review review, HttpContext context, IReviewRepository repostiroty) =>
             {
                 if (await repostiroty.GetReview(review.Id) != null)
                 {
-                    await repostiroty.DeleteReview(review, user);
+                    await repostiroty.DeleteReview(review, context.User.Claims.ToArray()[0].Value);
                     return Results.StatusCode(200);
                 }
                 return Results.StatusCode(400);
@@ -118,11 +118,11 @@ namespace Web
                 .Produces<string>(StatusCodes.Status200OK)
                 .RequireAuthorization();
 
-            app.MapPut("/update-review", async (Review review, User user, IReviewRepository repostiroty) =>
+            app.MapPut("/update-review", async (Review review, HttpContext context, IReviewRepository repostiroty) =>
             {
                 if (await repostiroty.GetReview(review.Id) != null)
                 {
-                    await repostiroty.UpdateReview(review, user);
+                    await repostiroty.UpdateReview(review, context.User.Claims.ToArray()[0].Value);
                     return Results.StatusCode(200);
                 }
                 return Results.StatusCode(400);

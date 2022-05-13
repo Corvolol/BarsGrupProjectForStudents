@@ -20,9 +20,9 @@ namespace DataBase
             await _context.SaveChangesAsync();
         }
 
-        public async Task DeleteReview(Review review, User user)
+        public async Task DeleteReview(Review review, string userEmail)
         {
-            if (review.User?.Email == user.Email)
+            if (review.User?.Email == userEmail)
             {
                 Review reviewToDelete = await GetReview(review.Id);
                 _context.Reviews.Remove(reviewToDelete);
@@ -30,9 +30,9 @@ namespace DataBase
             }
         }
 
-        public async Task UpdateReview(Review review, User user)
+        public async Task UpdateReview(Review review, string userEmail)
         {
-            if (review.User?.Email == user.Email)
+            if (review.User?.Email == userEmail)
             {
                 Review reviewToUpdate = await GetReview(review.Id);
                 _context.Reviews.Update(reviewToUpdate);

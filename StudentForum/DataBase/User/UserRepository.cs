@@ -16,7 +16,7 @@ namespace DataBase
 
         public async Task AddUSer(User user)
         {
-            await _context.Users.AddAsync(user);
+            _context.Users.Add(user);
             await _context.SaveChangesAsync();
         }
 
@@ -42,6 +42,10 @@ namespace DataBase
         public async Task UpdateUser(string email, Question question)
         {
             var user = await _context.Users.FirstOrDefaultAsync(x => x.Email == email);
+            if (user.Questions == null)
+            {
+                user.Questions = new List<Question>();
+            }
             user.Questions.Add(question);
             await _context.SaveChangesAsync();
         }
@@ -49,6 +53,10 @@ namespace DataBase
         public async Task UpdateUser(string email, Answer answer)
         {
             var user = await _context.Users.FirstOrDefaultAsync(x => x.Email == email);
+            if (user.Answers == null)
+            {
+                user.Answers = new List<Answer>();
+            }
             user.Answers.Add(answer);
             await _context.SaveChangesAsync();
         }
@@ -56,6 +64,10 @@ namespace DataBase
         public async Task UpdateUser(string email, Review review)
         {
             var user = await _context.Users.FirstOrDefaultAsync(x => x.Email == email);
+            if (user.Reviews == null)
+            {
+                user.Reviews = new List<Review>();
+            }
             user.Reviews.Add(review);
             await _context.SaveChangesAsync();
         }

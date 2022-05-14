@@ -2,6 +2,18 @@ using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("CORSPolicy",
+        builder =>
+        {
+            builder
+            .AllowAnyMethod()
+            .AllowAnyHeader()
+            .WithOrigins("https://localhost:3000", "https://appname.azurestaticapps.net");
+        });
+});
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(swagger =>
 {
@@ -35,8 +47,12 @@ builder.Services.AddSwaggerGen(swagger =>
                     }
                 }) ;
 });
-builder.Services.AddDbContext<Context>((options) => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")!));
+builder.Services.AddDbContext<Context>(opts =>
+        opts.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"),
+            options => options.MigrationsAssembly("Web")));
 builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<ITeacherRepository, TeacherRepository>();
+builder.Services.AddScoped<IReviewRepository, ReviewRepository>();
 builder.Services.AddSingleton<IAuthServices, AuthServices>();
 builder.Services.AddAuthorization();
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -55,6 +71,8 @@ var app = builder.Build();
 
 app.UseSwagger();
 app.UseSwaggerUI();
+app.UseHttpsRedirection();
+app.UseCors("CORSPolicy");
 app.UseAuthentication();
 app.UseAuthorization();
 app.AddMinimalApiRoutes();

@@ -42,13 +42,19 @@ namespace Web
               .RequireAuthorization();
 
 
-            app.MapGet("teacher", async (int teacherId, ITeacherRepository repostiroty) => {
+            app.MapGet("/teacher", async (int teacherId, ITeacherRepository repostiroty) => {
                 return await repostiroty.GetTeacher(teacherId);
             })
               .WithTags("Get")
               .Produces<Teacher>(StatusCodes.Status200OK)
               .RequireAuthorization();
 
+            app.MapGet("/get-all-teachers", async (ITeacherRepository repostiroty) =>
+            {
+                return await repostiroty.GetAllTeachers();
+            })
+              .WithTags("Get")
+              .Produces<Teacher>(StatusCodes.Status200OK);
 
             app.MapPost("/add-teacher", async (Teacher teacher, ITeacherRepository repostiroty) =>
             {
@@ -89,7 +95,7 @@ namespace Web
                 .Produces<string>(StatusCodes.Status200OK)
                 .RequireAuthorization();
 
-            app.MapGet("review", async (int reviewId, IReviewRepository repostiroty) => {
+            app.MapGet("/review", async (int reviewId, IReviewRepository repostiroty) => {
                 return await repostiroty.GetReview(reviewId);
             })
               .WithTags("Get")
@@ -164,7 +170,7 @@ namespace Web
              .RequireAuthorization()
              .Produces(StatusCodes.Status200OK);
 
-            app.MapDelete("user/delete", async (HttpContext context, IUserRepository repostiroty) =>
+            app.MapDelete("/user/delete", async (HttpContext context, IUserRepository repostiroty) =>
              {
                  await repostiroty.DeleteUser(context.User.Claims.ToArray()[0].Value);
                  return Results.StatusCode(StatusCodes.Status200OK);

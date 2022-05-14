@@ -11,7 +11,7 @@ export class Tags extends Component {
                 <ListGroup flush>
                     <ListGroupItem
                         action
-                        href="/Tag"
+                        href="/tag"
                         tag="a"
                     >
                     <h4>Тег 1</h4>
@@ -19,7 +19,7 @@ export class Tags extends Component {
 
                     <ListGroupItem
                         action
-                        href="/Tag"
+                        href="/tag"
                         tag="a"
                     >
                         <h4>Тег 2</h4>
@@ -27,7 +27,7 @@ export class Tags extends Component {
 
                     <ListGroupItem
                         action
-                        href="/Tag"
+                        href="/tag"
                         tag="a"
                     >
                         <h4>Тег 3</h4>
@@ -35,7 +35,7 @@ export class Tags extends Component {
 
                     <ListGroupItem
                         action
-                        href="/Tag"
+                        href="/tag"
                         tag="a"
                     >
                         <h4>Тег 4</h4>

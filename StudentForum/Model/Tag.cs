@@ -9,7 +9,7 @@ namespace Model
 {
     public class Tag
     {
-        [Key] public int Id { get; set; }
+        [Key] public int TagId { get; set; }
         public string? name { get; set; }
         public List<Ticket>? Tickets { get; set; }
         public List<Book>? Books { get; set; }

@@ -161,6 +161,42 @@ namespace Web
               .RequireAuthorization()
               .Produces(StatusCodes.Status200OK);
 
+
+            app.MapGet("tag", async (int tagId, ITagRepository repostiroty) => {
+                return await repostiroty.GetTag(tagId);
+            })
+             .WithTags("Get")
+             .Produces<Tag>(StatusCodes.Status200OK)
+             .RequireAuthorization();
+
+
+            app.MapPost("/add-tag", async (Tag tag, ITagRepository repostiroty) =>
+            {
+                if (await repostiroty.GetTag(tag.TagId) == null)
+                {
+                    await repostiroty.AddTag(tag);
+                    return Results.StatusCode(200);
+                }
+                return Results.StatusCode(400);
+            })
+              .WithTags("Post")
+              .Produces<string>(StatusCodes.Status200OK)
+              .RequireAuthorization();
+
+            app.MapPut("/update-tag", async (Tag tag, ITagRepository repostiroty) =>
+            {
+                if (await repostiroty.GetTag(tag.TagId) != null)
+                {
+                    await repostiroty.UpdateTag(tag);
+                    return Results.StatusCode(200);
+                }
+                return Results.StatusCode(400);
+            })
+                .WithTags("Update")
+                .Produces<string>(StatusCodes.Status200OK)
+                .RequireAuthorization();
+
+
             app.MapPut("/user/update", async (HttpContext context, IAuthServices authService, IUserRepository repostiroty, User user) =>
             {
                 await repostiroty.UpdateUser(user);
@@ -176,6 +212,10 @@ namespace Web
                  return Results.StatusCode(StatusCodes.Status200OK);
              }).WithTags("Delete")
                .RequireAuthorization()
+
+               .Produces(StatusCodes.Status200OK);
+
+
                .Produces(StatusCodes.Status200OK); 
             return app;
         }

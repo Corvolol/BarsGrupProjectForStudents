@@ -20,13 +20,13 @@ namespace DataBase.Model
 
         public async Task AddQuestion(Question question)
         {
-            _context.Add(question);
+            _context?.Questions.Add(question);
             await _context.SaveChangesAsync();
         }
 
         public async Task DeleteQuestion(Question question)
         {
-            _context.Remove(question);
+            _context.Questions.Remove(question);
             await _context.SaveChangesAsync();
         }
 
@@ -37,14 +37,30 @@ namespace DataBase.Model
         }
 
 
-
         public async Task UpdateQuestion(Question question)
         {
             _context.Questions.Update(question);
             await _context.SaveChangesAsync();
         }
+        public async Task<Question> GetQuestion(int questionId)
+        {
+            var quest = await _context.Questions.FirstOrDefaultAsync(x => x.QuestionId == questionId);
+            return quest;
+        }
 
+        public async Task<List<Answer>> GetAnswers(int questionId)
+        {
+            var quest = await _context.Questions.FirstOrDefaultAsync(x => x.QuestionId == questionId);
+            var answer_quest = quest.Answers;
+            return answer_quest;
 
+        }
 
+        public async Task<User> GetUser(int questionId)
+        {
+            var quest = await _context.Questions.FirstOrDefaultAsync(x => x.QuestionId == questionId);
+            var user = quest.User;
+            return user;
+        }
     }
-    }
+}

@@ -96,15 +96,22 @@ namespace Web
                 .RequireAuthorization();
 
             app.MapGet("/review", async (int reviewId, IReviewRepository repostiroty) => {
+
+                var review = await repostiroty.GetReview(reviewId);
+
                 return await repostiroty.GetReview(reviewId);
             })
               .WithTags("Get")
               .Produces<Review>(StatusCodes.Status200OK)
               .RequireAuthorization();
 
-            app.MapPost("/add-review", async (Review review, HttpContext context, IReviewRepository repostiroty) =>
+            app.MapPost("/add-review", async (ReviewRequest reviewReq, HttpContext context, IReviewRepository repostiroty, IReviewFactory reviewFactory, ITeacherRepository teacherRepository, IUserRepository userRepository) =>
             {
-                await repostiroty.AddReview(review, context.User.Claims.ToArray()[0].Value);
+                var teacher = await teacherRepository.GetTeacher(reviewReq.teacherId);
+                var user = await userRepository.GetUser(context.User.Claims.ToArray()[0].Value);
+                var review = reviewFactory.CreateReview(reviewReq, teacher, user);
+
+                await repostiroty.AddReview(review);
                 return Results.StatusCode(200);
             })
               .WithTags("Post")
@@ -212,11 +219,8 @@ namespace Web
                  return Results.StatusCode(StatusCodes.Status200OK);
              }).WithTags("Delete")
                .RequireAuthorization()
-
                .Produces(StatusCodes.Status200OK);
 
-
-               .Produces(StatusCodes.Status200OK); 
             return app;
         }
     }

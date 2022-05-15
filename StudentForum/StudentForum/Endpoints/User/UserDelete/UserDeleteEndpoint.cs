@@ -12,13 +12,13 @@
                 _userRepository = userRepository;
                 return HandleAsync();
             }).WithTags("User")
-              .Produces(StatusCodes.Status200OK)
+              .Produces<UserDeleteResponce>()
               .RequireAuthorization();
         }
         public async Task<IResult> HandleAsync()
         {
             await _userRepository.DeleteUser(_context.User.Claims.ToArray()[0].Value);
-            return Results.Ok();
+            return Results.Ok(new UserDeleteResponce() { Succes = true });
         }
     }
 }

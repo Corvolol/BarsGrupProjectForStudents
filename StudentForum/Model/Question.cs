@@ -12,7 +12,7 @@ namespace Model
         [Key] public int QuestionId { get; set; }
         public string?  Essence { get; set; }
         public string? Info { get; set; }
-        public List<Tag>? Tags { get; set; }
+        public List<TagModel>? Tags { get; set; }
         public List<Answer>? Answers { get; set; }
         public User? User { get; set; }
     }

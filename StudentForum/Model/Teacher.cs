@@ -18,7 +18,7 @@ namespace Model
         public string? lesson { get; set; }
 
         public List<Review>? Reviews { get; set; }
-        public List<Tag>? Tags { get; set; }
+        public List<TagModel>? Tags { get; set; }
     }
 
 }

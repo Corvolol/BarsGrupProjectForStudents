@@ -160,10 +160,11 @@ namespace Web
                 return await repostiroty.GetTag(tagId);
             })
              .WithTags("Get")
-             .Produces<Tag>(StatusCodes.Status200OK)
+             .Produces<TagModel>(StatusCodes.Status200OK)
              .RequireAuthorization();
 
 
+<<<<<<< Updated upstream
             app.MapPost("/add-tag", async (Tag tag, ITagRepository repostiroty) =>
             {
                 if (await repostiroty.GetTag(tag.TagId) == null)
@@ -211,6 +212,9 @@ namespace Web
 
 
                .Produces(StatusCodes.Status200OK); 
+=======
+           
+>>>>>>> Stashed changes
             return app;
         }
     }

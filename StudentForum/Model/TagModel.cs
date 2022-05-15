@@ -7,7 +7,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Model
 {
-    public class Tag
+    public class TagModel
     {
         [Key] public int TagId { get; set; }
         public string? name { get; set; }

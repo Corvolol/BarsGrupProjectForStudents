@@ -11,6 +11,6 @@ namespace Model
     {
         [Key] public int Id { get; set; }
         public string? Value { get; set; }
-        public Tag? Tag { get; set; }
+        public TagModel? Tag { get; set; }
     }
 }

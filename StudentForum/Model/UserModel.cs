@@ -10,7 +10,7 @@ using System.Security.Cryptography;
 namespace Model
 {
    
-    public class User
+    public class UserModel
     {
         [Key]
         public string Email { get; set; } = null!;
@@ -29,8 +29,8 @@ namespace Model
 
         public string? Password { get; set; }
 
-        public List<Question>? Questions { get; set; }
-        public List<Answer>? Answers { get; set; }
-        public List<Review>? Reviews { get; set; }
+        public List<Question> Questions { get; set; } = new();
+        public List<Answer> Answers { get; set; } = new();
+        public List<Review> Reviews { get; set; } = new();
     }
 }

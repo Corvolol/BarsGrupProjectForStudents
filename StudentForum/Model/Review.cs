@@ -16,6 +16,6 @@ namespace Model
         public DateTime date { get; set; }
 
         public Teacher? Teacher { get; set; }
-        public User? User { get; set; }
+        public UserModel? User { get; set; }
     }
 }

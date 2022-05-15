@@ -14,7 +14,7 @@ namespace DataBase
             _context = context;
         }
 
-        public async Task AddUSer(User user)
+        public async Task AddUSer(UserModel user)
         {
             _context.Users.Add(user);
             await _context.SaveChangesAsync();
@@ -27,48 +27,15 @@ namespace DataBase
             await _context.SaveChangesAsync();
         }
 
-        public async Task<User> GetUser(string email)
+        public async Task<UserModel> GetUser(string email)
         {
             var user = await _context.Users.FirstOrDefaultAsync(x => x.Email == email);
             return user;
         }
 
-        public async Task UpdateUser(User updateUser)
+        public async Task UpdateUser(UserModel updateUser)
         {
             _context.Users.Update(updateUser);
-            await _context.SaveChangesAsync();
-        }
-
-        public async Task UpdateUser(string email, Question question)
-        {
-            var user = await _context.Users.FirstOrDefaultAsync(x => x.Email == email);
-            if (user.Questions == null)
-            {
-                user.Questions = new List<Question>();
-            }
-            user.Questions.Add(question);
-            await _context.SaveChangesAsync();
-        }
-
-        public async Task UpdateUser(string email, Answer answer)
-        {
-            var user = await _context.Users.FirstOrDefaultAsync(x => x.Email == email);
-            if (user.Answers == null)
-            {
-                user.Answers = new List<Answer>();
-            }
-            user.Answers.Add(answer);
-            await _context.SaveChangesAsync();
-        }
-
-        public async Task UpdateUser(string email, Review review)
-        {
-            var user = await _context.Users.FirstOrDefaultAsync(x => x.Email == email);
-            if (user.Reviews == null)
-            {
-                user.Reviews = new List<Review>();
-            }
-            user.Reviews.Add(review);
             await _context.SaveChangesAsync();
         }
     }

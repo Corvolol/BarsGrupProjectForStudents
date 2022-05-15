@@ -56,7 +56,7 @@ namespace DataBase.Model
 
         }
 
-        public async Task<User> GetUser(int questionId)
+        public async Task<UserModel> GetUser(int questionId)
         {
             var quest = await _context.Questions.FirstOrDefaultAsync(x => x.QuestionId == questionId);
             var user = quest.User;

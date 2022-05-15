@@ -13,6 +13,5 @@ namespace DataBase
         public Task UpdateTag(TagModel tag);
         public Task<TagModel> GetTag(int tagId);
         public Task<List<TagModel>> GetAllTag();
-        Task GetTag(object value);
     }
 }

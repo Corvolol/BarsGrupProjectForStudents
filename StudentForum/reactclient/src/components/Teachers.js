@@ -1,25 +1,25 @@
-import React, { useState } from 'react';
+import React, { Component, useState } from 'react';
 import { ListGroup, ListGroupItem } from 'reactstrap';
 import constants from './Constants';
 
-export function Teachers() {
-    
+
+export default function Teachers() {
     const [teachers, setTeachers] = useState([]);
 
     function getTeachers() {
         const url = constants.API_URL_GET_ALL_TEACHERS;
-        
+
         fetch(url, {
             method: 'GET'
         })
-        .then(response => response.json())
-        .then(teachersFromServer => {
-            setTeachers(teachersFromServer);
-        })
-        .catch((error) => {
-            console.log(error);
-            alert(error);
-        });
+            .then(response => response.json())
+            .then(teachersFromServer => {
+                setTeachers(teachersFromServer);
+            })
+            .catch((error) => {
+                console.log(error);
+                alert(error);
+            });
     }
 
     return (
@@ -27,19 +27,16 @@ export function Teachers() {
             {getTeachers()}
             {teachers.map((teacher) => (
                 <ListGroup flush>
-                <ListGroupItem
-                    action
-                    href="/teacher"
-                    tag="a"
-                >
-                    <h4>{teacher.name}</h4>
-                </ListGroupItem>
-            </ListGroup>
+                    <ListGroupItem
+                        action
+                        href="/teacher"
+                        tag="a"
+                    >
+                        <h4>{teacher.name}</h4>
+                    </ListGroupItem>
+                </ListGroup>
             ))}
         </body>
     );
 }
 
-/*
-
-*/

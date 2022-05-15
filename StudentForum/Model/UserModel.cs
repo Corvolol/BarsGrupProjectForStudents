@@ -31,6 +31,6 @@ namespace Model
 
         public List<Question> Questions { get; set; } = new();
         public List<Answer> Answers { get; set; } = new();
-        public List<Review> Reviews { get; set; } = new();
+        public List<ReviewModel> Reviews { get; set; } = new();
     }
 }

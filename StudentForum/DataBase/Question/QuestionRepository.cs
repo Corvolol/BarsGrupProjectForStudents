@@ -44,13 +44,13 @@ namespace DataBase.Model
         }
         public async Task<Question> GetQuestion(int questionId)
         {
-            var quest = await _context.Questions.FirstOrDefaultAsync(x => x.QuestionId == questionId);
+            var quest = await _context.Questions.FirstOrDefaultAsync(x => x.Id == questionId);
             return quest;
         }
 
         public async Task<List<Answer>> GetAnswers(int questionId)
         {
-            var quest = await _context.Questions.FirstOrDefaultAsync(x => x.QuestionId == questionId);
+            var quest = await _context.Questions.FirstOrDefaultAsync(x => x.Id == questionId);
             var answer_quest = quest.Answers;
             return answer_quest;
 
@@ -58,7 +58,7 @@ namespace DataBase.Model
 
         public async Task<UserModel> GetUser(int questionId)
         {
-            var quest = await _context.Questions.FirstOrDefaultAsync(x => x.QuestionId == questionId);
+            var quest = await _context.Questions.FirstOrDefaultAsync(x => x.Id == questionId);
             var user = quest.User;
             return user;
         }

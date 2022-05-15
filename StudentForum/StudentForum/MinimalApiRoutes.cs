@@ -22,7 +22,7 @@ namespace Web
 
             app.MapPost("/add-teacher", async (Teacher teacher, ITeacherRepository repostiroty) =>
             {
-                if (await repostiroty.GetTeacher(teacher.TeacherId) == null)
+                if (await repostiroty.GetTeacher(teacher.Id) == null)
                 {
                     await repostiroty.AddTeacher(teacher);
                     return Results.StatusCode(200);
@@ -35,7 +35,7 @@ namespace Web
 
             app.MapDelete("/delete-teacher", async ([FromBody] Teacher teacher, ITeacherRepository repostiroty) =>
             {
-                if (await repostiroty.GetTeacher(teacher.TeacherId) != null)
+                if (await repostiroty.GetTeacher(teacher.Id) != null)
                 {
                     await repostiroty.DeleteTeacher(teacher);
                     return Results.StatusCode(200);
@@ -48,7 +48,7 @@ namespace Web
 
             app.MapPut("/update-teacher", async (Teacher teacher, ITeacherRepository repostiroty) =>
             {
-                if (await repostiroty.GetTeacher(teacher.TeacherId) != null)
+                if (await repostiroty.GetTeacher(teacher.Id) != null)
                 {
                     await repostiroty.UpdateTeacher(teacher);
                     return Results.StatusCode(200);
@@ -63,19 +63,10 @@ namespace Web
                 return await repostiroty.GetReview(reviewId);
             })
               .WithTags("Get")
-              .Produces<Review>(StatusCodes.Status200OK)
+              .Produces<ReviewModel>(StatusCodes.Status200OK)
               .RequireAuthorization();
 
-            app.MapPost("/add-review", async (Review review, HttpContext context, IReviewRepository repostiroty) =>
-            {
-                await repostiroty.AddReview(review, context.User.Claims.ToArray()[0].Value);
-                return Results.StatusCode(200);
-            })
-              .WithTags("Post")
-              .Produces<string>(StatusCodes.Status200OK)
-              .RequireAuthorization();
-
-            app.MapDelete("/delete-review", async ([FromBody] Review review, HttpContext context, IReviewRepository repostiroty) =>
+            app.MapDelete("/delete-review", async ([FromBody] ReviewModel review, HttpContext context, IReviewRepository repostiroty) =>
             {
                 if (await repostiroty.GetReview(review.Id) != null)
                 {
@@ -88,7 +79,7 @@ namespace Web
                 .Produces<string>(StatusCodes.Status200OK)
                 .RequireAuthorization();
 
-            app.MapPut("/update-review", async (Review review, HttpContext context, IReviewRepository repostiroty) =>
+            app.MapPut("/update-review", async (ReviewModel review, HttpContext context, IReviewRepository repostiroty) =>
             {
                 if (await repostiroty.GetReview(review.Id) != null)
                 {
@@ -100,6 +91,7 @@ namespace Web
                 .WithTags("Update")
                 .Produces<string>(StatusCodes.Status200OK)
                 .RequireAuthorization();
+
             app.MapGet("tag", async (int tagId, ITagRepository repostiroty) => {
                 return await repostiroty.GetTag(tagId);
             })
@@ -110,7 +102,7 @@ namespace Web
 
             app.MapPost("/add-tag", async (Tag tag, ITagRepository repostiroty) =>
             {
-                if (await repostiroty.GetTag(tag.TagId) == null)
+                if (await repostiroty.GetTag(tag.Id) == null)
                 {
                     await repostiroty.AddTag(tag);
                     return Results.StatusCode(200);
@@ -123,7 +115,7 @@ namespace Web
 
             app.MapPut("/update-tag", async (Tag tag, ITagRepository repostiroty) =>
             {
-                if (await repostiroty.GetTag(tag.TagId) != null)
+                if (await repostiroty.GetTag(tag.Id) != null)
                 {
                     await repostiroty.UpdateTag(tag);
                     return Results.StatusCode(200);

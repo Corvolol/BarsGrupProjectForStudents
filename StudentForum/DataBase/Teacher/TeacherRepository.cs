@@ -22,21 +22,21 @@ namespace DataBase
 
         public async Task DeleteTeacher(Teacher teacher)
         {
-            Teacher teacherToDelete = await GetTeacher(teacher.TeacherId);
+            Teacher teacherToDelete = await GetTeacher(teacher.Id);
             _context.Teachers.Remove(teacherToDelete);
             await _context.SaveChangesAsync();
         }
 
         public async Task UpdateTeacher(Teacher teacher)
         {
-            Teacher teacherToUpdate = await GetTeacher(teacher.TeacherId);
+            Teacher teacherToUpdate = await GetTeacher(teacher.Id);
             _context.Teachers.Update(teacherToUpdate);
             await _context.SaveChangesAsync();
         }
 
         public async Task<Teacher> GetTeacher(int teacherId)
         {
-            var teacher = await _context.Teachers.FirstOrDefaultAsync(x => x.TeacherId == teacherId);
+            var teacher = await _context.Teachers.FirstOrDefaultAsync(x => x.Id == teacherId);
             return teacher;
         }
 

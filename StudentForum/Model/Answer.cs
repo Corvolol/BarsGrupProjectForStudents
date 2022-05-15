@@ -9,13 +9,13 @@ namespace Model
 {
     public class Answer
     {
-        [Key] public int AnswerId { get; set; }
+        [Key] public int Id { get; set; }
 
         public string? Login { get; set; }
 
-        public string? answer { get; set; }
+        public string? Value { get; set; }
 
-        public DateTime date { get; set; }
+        public DateTime Date { get; set; }
 
         public Question? Question { get; set; }
         public UserModel? User { get; set; }

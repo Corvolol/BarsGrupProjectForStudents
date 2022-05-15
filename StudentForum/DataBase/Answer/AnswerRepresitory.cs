@@ -30,7 +30,7 @@ namespace DataBase
 
         public async Task<Answer> GetUserOfAnswer(int answerId)
         {
-            var user = await _context.Answers.FirstOrDefaultAsync(x => x.AnswerId ==  answerId);
+            var user = await _context.Answers.FirstOrDefaultAsync(x => x.Id ==  answerId);
 
             return user;
             

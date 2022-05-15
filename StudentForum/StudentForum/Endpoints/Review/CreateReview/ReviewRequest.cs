@@ -9,8 +9,8 @@ namespace Model
 {
     public class ReviewRequest
     {
-        public string? review { get; set; }
-
-        public int teacherId { get; set; }
+        public int Id { get; set; }
+        public string? Value { get; set; }
+        public int TeacherId { get; set; }
     }
 }

@@ -22,21 +22,21 @@ namespace DataBase
 
         public async Task DeleteTag(Tag tag)
         {
-            Tag tagToDelete = await GetTag(tag.TagId);
+            Tag tagToDelete = await GetTag(tag.Id);
             _context.Tags.Remove(tagToDelete);
             await _context.SaveChangesAsync();
         }
 
         public async Task UpdateTag(Tag tag)
         {
-            Tag tagToUpdate = await GetTag(tag.TagId);
+            Tag tagToUpdate = await GetTag(tag.Id);
             _context.Tags.Update(tagToUpdate);
             await _context.SaveChangesAsync();
         }
 
         public async Task<Tag> GetTag(int tagId)
         {
-            var tag = await _context.Tags.FirstOrDefaultAsync(x => x.TagId == tagId);
+            var tag = await _context.Tags.FirstOrDefaultAsync(x => x.Id == tagId);
             return tag;
         }
 

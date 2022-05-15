@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 
-namespace Model
+namespace Web.Endpoints.User.Login
 {
-    public class Auth
+    public class LoginRequest
     {
         public string? Email{ get; set; }
         public string? Password { get; set; }

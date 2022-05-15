@@ -13,7 +13,7 @@
                  _userRepository = userRepository;
                  return HandleAsync(userUpdateRequest);
              }).WithTags("User")
-                .Produces(StatusCodes.Status200OK)
+                .Produces<UserUpdateResponce>()
                 .RequireAuthorization();
         }
 
@@ -29,7 +29,7 @@
                 Speciality = userUpdateRequest.Speciality
             };
             await _userRepository.UpdateUser(user);
-            return Results.Ok();
+            return Results.Ok(new UserUpdateResponce() { Succes = true});
         }
     }
 }

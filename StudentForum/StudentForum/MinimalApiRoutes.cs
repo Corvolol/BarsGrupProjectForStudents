@@ -68,7 +68,7 @@ namespace Web
 
             app.MapPost("/add-review", async (Review review, HttpContext context, IReviewRepository repostiroty) =>
             {
-                await repostiroty.AddReview(review, context.User.Claims.ToArray()[0].Value);
+                await repostiroty.AddReview(review);
                 return Results.StatusCode(200);
             })
               .WithTags("Post")

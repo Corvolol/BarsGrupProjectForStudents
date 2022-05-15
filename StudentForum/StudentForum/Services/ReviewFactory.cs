@@ -2,7 +2,7 @@
 {
     public class ReviewFactory : IReviewFactory
     {
-        public Review CreateReview(ReviewRequest reviewReq, Teacher teacher, User user)
+        public Review CreateReview(ReviewRequest reviewReq, Teacher teacher, UserModel user)
         {
             var resReview = new Review()
             {

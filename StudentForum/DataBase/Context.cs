@@ -10,7 +10,7 @@ namespace DataBase
         public DbSet<Question> Questions { get; set; } = null!;
         public DbSet<ReviewModel> Reviews { get; set; } = null!;
         public DbSet<Tag> Tags { get; set; } = null!;
-        public DbSet<Teacher> Teachers { get; set; } = null!;
+        public DbSet<TeacherModel> Teachers { get; set; } = null!;
         public DbSet<Ticket> Tickets { get; set; } = null!;
         public DbSet<Book> Books { get; set; } = null!;
 

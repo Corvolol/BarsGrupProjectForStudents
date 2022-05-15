@@ -14,7 +14,7 @@ namespace Model
         public List<Ticket>? Tickets { get; set; }
         public List<Book>? Books { get; set; }
         public List<Question> Questions { get; set; } = new();
-        public List<Teacher> Teachers { get; set; } = new();
+        public List<TeacherModel> Teachers { get; set; } = new();
 
     }
 }

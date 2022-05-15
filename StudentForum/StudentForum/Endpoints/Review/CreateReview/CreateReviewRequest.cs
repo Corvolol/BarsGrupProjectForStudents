@@ -7,10 +7,9 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Model
 {
-    public class ReviewResponse
+    public class CreateReviewRequest
     {
-        public int Id { get; set; }
         public string? Value { get; set; }
-        public DateTime Date { get; set; }
+        public int TeacherId { get; set; }
     }
 }

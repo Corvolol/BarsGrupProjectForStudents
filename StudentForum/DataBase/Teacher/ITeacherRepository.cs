@@ -8,10 +8,7 @@ namespace DataBase
 {
     public interface ITeacherRepository
     {
-        public Task AddTeacher(Teacher teacher);
-        public Task DeleteTeacher(Teacher teacher);
-        public Task UpdateTeacher(Teacher teacher);
-        public Task<Teacher> GetTeacher(int teacherId);
-        public Task<List<Teacher>> GetAllTeachers();
+        public Task<TeacherModel> GetTeacher(int teacherId);
+        public Task<List<TeacherModel>> GetAllTeachers();
     }
 }

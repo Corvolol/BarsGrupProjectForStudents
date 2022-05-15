@@ -14,6 +14,6 @@ namespace Model
         public string? Info { get; set; }
         public List<Tag>? Tags { get; set; }
         public List<Answer>? Answers { get; set; }
-        public User? User { get; set; }
+        public UserModel? User { get; set; }
     }
 }

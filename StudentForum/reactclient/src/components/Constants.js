@@ -1,5 +1,4 @@
 const API_BASE_URL_DEVELOPMENT = "https://localhost:7191";
-const API_BASE_URL_PRODUCTION = "https://appname.azurestaticapps.net";
 
 const ENDPOINTS = {
     REGISTRATION: 'registration',

@@ -5,7 +5,7 @@ namespace DataBase
 {
     public class Context: DbContext
     {
-        public DbSet<User> Users { get; set; } = null!;
+        public DbSet<UserModel> Users { get; set; } = null!;
         public DbSet<Answer> Answers { get; set; } = null!;
         public DbSet<Question> Questions { get; set; } = null!;
         public DbSet<Review> Reviews { get; set; } = null!;

@@ -8,7 +8,7 @@ namespace DataBase
 {
     public interface IReviewRepository
     {
-        public Task AddReview(Review review, string userEmail);
+        public Task AddReview(Review review);
         public Task DeleteReview(Review review, string userEmail);
         public Task UpdateReview(Review review, string userEmail);
         public Task<Review> GetReview(int reviewId);

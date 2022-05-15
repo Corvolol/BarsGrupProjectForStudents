@@ -8,12 +8,9 @@ namespace DataBase
 {
     public interface IUserRepository
     {
-        public Task AddUSer(User user);
-        public Task<User> GetUser(string email);
-        public Task UpdateUser (User user);
-        public Task UpdateUser(string email,Question question);
-        public Task UpdateUser(string email,Answer answer);
-        public Task UpdateUser(string email,Review review);
+        public Task AddUSer(UserModel user);
+        public Task<UserModel> GetUser(string email);
+        public Task UpdateUser (UserModel user);
         public Task DeleteUser (string email);
     }
 }

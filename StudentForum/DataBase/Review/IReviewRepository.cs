@@ -12,5 +12,6 @@ namespace DataBase
         public Task DeleteReview(ReviewModel review);
         public Task UpdateReview(ReviewModel review);
         public Task<ReviewModel> GetReview(int reviewId);
+        public Task<List<ReviewModel>> GetAllReviews();
     }
 }

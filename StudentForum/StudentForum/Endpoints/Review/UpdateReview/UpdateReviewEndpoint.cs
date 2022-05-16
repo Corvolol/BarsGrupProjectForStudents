@@ -13,11 +13,11 @@
                 _reviewReposiotry = repostiroty;
                 _userRepository = userRepository;
                 _context = context;
-                return HandleAsync(reviewRequest);
+                return await HandleAsync(reviewRequest);
             })
               .WithTags("Review")
-              .Produces<string>(StatusCodes.Status200OK);
-            //.RequireAuthorization();
+              .Produces<UpdateReviewRequest>()
+              .RequireAuthorization();
         }
 
         public async Task<IResult> HandleAsync(UpdateReviewRequest reviewRequest)

@@ -40,5 +40,11 @@ namespace DataBase
             var review = await _context.Reviews.FirstOrDefaultAsync(x => x.Id == reviewId);
             return review;
         }
+
+        public async Task<List<ReviewModel>> GetAllReviews()
+        {
+            var reviews = await _context.Reviews.ToListAsync();
+            return reviews;
+        }
     }
 }

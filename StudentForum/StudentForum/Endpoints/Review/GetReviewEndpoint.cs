@@ -10,11 +10,10 @@
             {
                 _reviewId = reviewId;
                 _reviewRepository = repostiroty;
-                return HandleAsync();
+                return await HandleAsync();
             })
               .WithTags("Review")
-              .Produces<ReviewModel>(StatusCodes.Status200OK);
-              //.RequireAuthorization();
+              .Produces<ReviewModel>();
         }
 
         public async Task<IResult> HandleAsync()

@@ -15,11 +15,11 @@
                 _userRepository = userRepository;
                 _teacherRepository = teacherRepository;
                 _context = context;
-                return HandleAsync(reviewRequest);
+                return await HandleAsync(reviewRequest);
             })
               .WithTags("Review")
-              .Produces<string>(StatusCodes.Status200OK);
-              //.RequireAuthorization();
+              .Produces<CreateReviewRequest>()
+              .RequireAuthorization();
         }
 
         public async Task<IResult> HandleAsync(CreateReviewRequest reviewRequest)

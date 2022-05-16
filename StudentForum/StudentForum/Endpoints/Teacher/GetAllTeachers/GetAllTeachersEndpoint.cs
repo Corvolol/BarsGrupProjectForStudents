@@ -14,7 +14,6 @@
             })
               .WithTags("Teacher")
               .Produces<GetAllTeachersResponse>();
-            //.RequireAuthorization();
         }
 
         public async Task<IResult> HandleAsync()

@@ -14,10 +14,10 @@
                 _reviewRepository = repository;
                 _userRepository = userRepository;
                 _reviewId = reviewId;
-                return HandleAsync();
+                return await HandleAsync();
             }).WithTags("Review")
-              .Produces(StatusCodes.Status200OK);
-              //.RequireAuthorization();
+              .Produces<string>()
+              .RequireAuthorization();
         }
         public async Task<IResult> HandleAsync()
         {

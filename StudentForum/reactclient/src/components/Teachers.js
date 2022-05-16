@@ -25,16 +25,16 @@ export function Teachers() {
     return (
         <body>
             {getTeachers()}
-            {teachers.map((teacher) => (
+            {teachers.map((id, name) => (
                 <ListGroup flush>
-                <ListGroupItem
-                    action
-                    href="/teacher"
-                    tag="a"
-                >
-                    <h4>{teacher.name}</h4>
-                </ListGroupItem>
-            </ListGroup>
+                    <ListGroupItem
+                        action
+                        href="/teacher"
+                        tag="a"
+                    >
+                        <h4>{name}</h4>
+                    </ListGroupItem>
+                </ListGroup>
             ))}
         </body>
     );

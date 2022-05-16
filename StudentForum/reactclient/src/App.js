@@ -7,11 +7,12 @@ import { Question } from './components/Question';
 import { Tags } from './components/Tags';
 import { Tag } from './components/Tag';
 import { Teachers } from './components/Teachers';
+import { Teacher } from './components/Teacher';
 
 export default function App() {
     return (
       <>
-        <Teachers />
+          <Teacher />
       </>
     );
   }

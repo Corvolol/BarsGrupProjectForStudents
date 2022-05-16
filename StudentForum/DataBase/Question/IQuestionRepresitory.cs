@@ -4,16 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataBase.Model
+namespace DataBase
 {
-    internal interface IQuestionRepresitory
+    public interface IQuestionRepresitory
 
     {
-        public Task AddQuestion(Question question);
-        public Task<List<Question>> GetAllQuestion();
-        public Task UpdateQuestion(Question question);
-        public Task DeleteQuestion(Question question);
-        public Task<Question> GetQuestion(int questionId);
+        public Task AddQuestion(QuestionModel question);
+        public Task<List<QuestionModel>> GetAllQuestion();
+        public Task UpdateQuestion(QuestionModel question);
+        public Task DeleteQuestion(QuestionModel question);
+        public Task<QuestionModel> GetQuestion(int questionId);
         public Task<List<Answer>> GetAnswers( int questionId);
         public Task<User> GetUser(int questionId);
 

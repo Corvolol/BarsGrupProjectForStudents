@@ -41,5 +41,4 @@ app.UseAuthentication();
 app.UseHttpsRedirection();
 app.UseAuthorization();
 app.MapEndpoints();
-//app.AddMinimalApiRoutes();
 app.Run();

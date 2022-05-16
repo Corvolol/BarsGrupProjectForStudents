@@ -1,34 +1,30 @@
-import React, { Component } from 'react';
-import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
-import { Layout } from './components/Layout';
-import { AskQuestion } from './components/AskQuestion';
-import { Forum } from './components/Forum';
-import { Question } from './components/Question';
-import { Tags } from './components/Tags';
-import { Tag } from './components/Tag';
-import { Teachers } from './components/Teachers';
-
+import React from 'react';
+import { Route, Routes, Link } from 'react-router-dom';
+import Login from './pages/Login';
+import Registrarion from './pages/Registrarion';
+import Forum from './pages/Forum'
+import AskQuestion from './pages/AskQuestion'
+import Teachers from './pages/Teachers';
+import Tags from './pages/Tags'
+import Teacher from './pages/Teacher';
+import Questions from './pages/Questions';
+import Question from './pages/Question';
+import NavMenu from './components/NavMenu';
 export default function App() {
-    return (
-      <>
-        <Teachers />
-      </>
-    );
-  }
-
-/*
-<Router>
-          <div>
-            <Routes>
-              <Layout>
-                <Route exact path='/' element={<Forum />} />
-                <Route exact path='/question' element={<Question />}  />
-                <Route exact path='/tags' element={<Tags />}  />
-                <Route exact path='/ask-question' element={<AskQuestion />}  />
-                <Route exact path='/tag' element={<Tag />} />
-                <Route exact path='/teachers' element={<Teachers />} />
-              </Layout>
-            </Routes>
-          </div>
-        </Router>
-*/
+  return (
+    <dev>
+      <NavMenu />
+      <Routes>
+        <Route path='/askquestion' element={<AskQuestion />} />
+        <Route path='/login' element={<Login />} />
+        <Route path='/registration' element={<Registrarion />} />
+        <Route path='/tags' element={<Tags />} />
+        <Route path='/teachers' element={<Teachers />} />
+        <Route path='/teacger/{id}' element={<Teacher />} />
+        <Route path='/question/{id}' element={<Question />} />
+        <Route path='/questions' element={<Questions />} />
+        <Route path='/' element={<Forum />} />
+      </Routes>
+    </dev>
+  );
+} 

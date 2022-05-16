@@ -1,9 +1,8 @@
 ﻿namespace Web.Endpoints.Review.UpdateReview
 {
-    public class UpdateReviewRequest
+    public class UpdateReviewResponse
     {
         public int Id { get; set; }
         public string? Value { get; set; }
-        public string? UserEmail { get; set; }
     }
 }

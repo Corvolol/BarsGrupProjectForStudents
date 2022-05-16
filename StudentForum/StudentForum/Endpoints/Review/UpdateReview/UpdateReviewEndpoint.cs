@@ -16,7 +16,7 @@
                 return await HandleAsync(reviewRequest);
             })
               .WithTags("Review")
-              .Produces<UpdateReviewRequest>()
+              .Produces<UpdateReviewResponse>()
               .RequireAuthorization();
         }
 
@@ -25,7 +25,7 @@
             var user = await _userRepository.GetUser(_context.User.Claims.ToArray()[0].Value);
             var rev = await _reviewReposiotry.GetReview(reviewRequest.Id);
 
-            if (user == reviewRequest.User)
+            if (user.Email == reviewRequest.UserEmail)
             {
                 ReviewModel review = new ReviewModel()
                 {
@@ -37,7 +37,11 @@
                 };
                 await _reviewReposiotry.UpdateReview(review);
 
-                return Results.Ok(review.Value);
+                return Results.Ok(new UpdateReviewResponse()
+                {
+                    Id = review.Id,
+                    Value = review.Value
+                });
             }
             else return Results.BadRequest();
         }

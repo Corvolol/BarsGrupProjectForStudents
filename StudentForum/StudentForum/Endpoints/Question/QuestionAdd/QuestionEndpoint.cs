@@ -22,9 +22,9 @@ namespace Web.Endpoints.Question.QuestionAdd
                 return HandleAsync( questionRequest);
 
             })
-    .WithTags("Question")
-    .Produces<QuestionRequest>()
-    .RequireAuthorization();
+            .WithTags("Question")
+            .Produces<QuestionRequest>()
+            .RequireAuthorization();
         }
 
         public async Task<IResult> HandleAsync(QuestionRequest questionRequest)
@@ -41,7 +41,7 @@ namespace Web.Endpoints.Question.QuestionAdd
             };
 
            _questionRepository.AddQuestion(NewQuestion);
-           return Results.Ok();
+           return Results.Ok(NewQuestion);
         }
     }
 }

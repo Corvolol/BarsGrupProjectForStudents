@@ -15,7 +15,7 @@ namespace Web.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    name = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -26,15 +26,14 @@ namespace Web.Migrations
                 name: "Teachers",
                 columns: table => new
                 {
-                    TeacherId = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    cafedra = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    lesson = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Cafedra = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Teachers", x => x.TeacherId);
+                    table.PrimaryKey("PK_Teachers", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -94,26 +93,26 @@ namespace Web.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "TagTeacher",
+                name: "TagTeacherModel",
                 columns: table => new
                 {
                     TagsId = table.Column<int>(type: "int", nullable: false),
-                    TeachersTeacherId = table.Column<int>(type: "int", nullable: false)
+                    TeachersId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_TagTeacher", x => new { x.TagsId, x.TeachersTeacherId });
+                    table.PrimaryKey("PK_TagTeacherModel", x => new { x.TagsId, x.TeachersId });
                     table.ForeignKey(
-                        name: "FK_TagTeacher_Tags_TagsId",
+                        name: "FK_TagTeacherModel_Tags_TagsId",
                         column: x => x.TagsId,
                         principalTable: "Tags",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_TagTeacher_Teachers_TeachersTeacherId",
-                        column: x => x.TeachersTeacherId,
+                        name: "FK_TagTeacherModel_Teachers_TeachersId",
+                        column: x => x.TeachersId,
                         principalTable: "Teachers",
-                        principalColumn: "TeacherId",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -121,20 +120,21 @@ namespace Web.Migrations
                 name: "Questions",
                 columns: table => new
                 {
-                    QuestionId = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Essence = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Info = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    UserEmail = table.Column<string>(type: "nvarchar(450)", nullable: true)
+                    UserEmail = table.Column<string>(type: "nvarchar(450)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Questions", x => x.QuestionId);
+                    table.PrimaryKey("PK_Questions", x => x.Id);
                     table.ForeignKey(
                         name: "FK_Questions_Users_UserEmail",
                         column: x => x.UserEmail,
                         principalTable: "Users",
-                        principalColumn: "Email");
+                        principalColumn: "Email",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -143,8 +143,8 @@ namespace Web.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    review = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    date = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Value = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Date = table.Column<DateTime>(type: "datetime2", nullable: false),
                     TeacherId = table.Column<int>(type: "int", nullable: true),
                     UserEmail = table.Column<string>(type: "nvarchar(450)", nullable: true)
                 },
@@ -155,7 +155,7 @@ namespace Web.Migrations
                         name: "FK_Reviews_Teachers_TeacherId",
                         column: x => x.TeacherId,
                         principalTable: "Teachers",
-                        principalColumn: "TeacherId");
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Reviews_Users_UserEmail",
                         column: x => x.UserEmail,
@@ -167,22 +167,22 @@ namespace Web.Migrations
                 name: "Answers",
                 columns: table => new
                 {
-                    AnswerId = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Login = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    answer = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    date = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Value = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Date = table.Column<DateTime>(type: "datetime2", nullable: false),
                     QuestionId = table.Column<int>(type: "int", nullable: true),
                     UserEmail = table.Column<string>(type: "nvarchar(450)", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Answers", x => x.AnswerId);
+                    table.PrimaryKey("PK_Answers", x => x.Id);
                     table.ForeignKey(
                         name: "FK_Answers_Questions_QuestionId",
                         column: x => x.QuestionId,
                         principalTable: "Questions",
-                        principalColumn: "QuestionId");
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Answers_Users_UserEmail",
                         column: x => x.UserEmail,
@@ -191,23 +191,23 @@ namespace Web.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "QuestionTag",
+                name: "QuestionModelTag",
                 columns: table => new
                 {
-                    QuestionsQuestionId = table.Column<int>(type: "int", nullable: false),
+                    QuestionsId = table.Column<int>(type: "int", nullable: false),
                     TagsId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_QuestionTag", x => new { x.QuestionsQuestionId, x.TagsId });
+                    table.PrimaryKey("PK_QuestionModelTag", x => new { x.QuestionsId, x.TagsId });
                     table.ForeignKey(
-                        name: "FK_QuestionTag_Questions_QuestionsQuestionId",
-                        column: x => x.QuestionsQuestionId,
+                        name: "FK_QuestionModelTag_Questions_QuestionsId",
+                        column: x => x.QuestionsId,
                         principalTable: "Questions",
-                        principalColumn: "QuestionId",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_QuestionTag_Tags_TagsId",
+                        name: "FK_QuestionModelTag_Tags_TagsId",
                         column: x => x.TagsId,
                         principalTable: "Tags",
                         principalColumn: "Id",
@@ -230,14 +230,14 @@ namespace Web.Migrations
                 column: "TagId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_QuestionModelTag_TagsId",
+                table: "QuestionModelTag",
+                column: "TagsId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Questions_UserEmail",
                 table: "Questions",
                 column: "UserEmail");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_QuestionTag_TagsId",
-                table: "QuestionTag",
-                column: "TagsId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Reviews_TeacherId",
@@ -250,9 +250,9 @@ namespace Web.Migrations
                 column: "UserEmail");
 
             migrationBuilder.CreateIndex(
-                name: "IX_TagTeacher_TeachersTeacherId",
-                table: "TagTeacher",
-                column: "TeachersTeacherId");
+                name: "IX_TagTeacherModel_TeachersId",
+                table: "TagTeacherModel",
+                column: "TeachersId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Tickets_TagId",
@@ -269,13 +269,13 @@ namespace Web.Migrations
                 name: "Books");
 
             migrationBuilder.DropTable(
-                name: "QuestionTag");
+                name: "QuestionModelTag");
 
             migrationBuilder.DropTable(
                 name: "Reviews");
 
             migrationBuilder.DropTable(
-                name: "TagTeacher");
+                name: "TagTeacherModel");
 
             migrationBuilder.DropTable(
                 name: "Tickets");

@@ -75,7 +75,7 @@ namespace Web.Migrations
                     b.ToTable("Books");
                 });
 
-            modelBuilder.Entity("Model.Question", b =>
+            modelBuilder.Entity("Model.QuestionModel", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -216,7 +216,7 @@ namespace Web.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("QuestionTag", b =>
+            modelBuilder.Entity("QuestionModelTag", b =>
                 {
                     b.Property<int>("QuestionsId")
                         .HasColumnType("int");
@@ -228,7 +228,7 @@ namespace Web.Migrations
 
                     b.HasIndex("TagsId");
 
-                    b.ToTable("QuestionTag");
+                    b.ToTable("QuestionModelTag");
                 });
 
             modelBuilder.Entity("TagTeacherModel", b =>
@@ -248,7 +248,7 @@ namespace Web.Migrations
 
             modelBuilder.Entity("Model.Answer", b =>
                 {
-                    b.HasOne("Model.Question", "Question")
+                    b.HasOne("Model.QuestionModel", "Question")
                         .WithMany("Answers")
                         .HasForeignKey("QuestionId");
 
@@ -270,7 +270,7 @@ namespace Web.Migrations
                     b.Navigation("Tag");
                 });
 
-            modelBuilder.Entity("Model.Question", b =>
+            modelBuilder.Entity("Model.QuestionModel", b =>
                 {
                     b.HasOne("Model.UserModel", "User")
                         .WithMany("Questions")
@@ -305,9 +305,9 @@ namespace Web.Migrations
                     b.Navigation("Tag");
                 });
 
-            modelBuilder.Entity("QuestionTag", b =>
+            modelBuilder.Entity("QuestionModelTag", b =>
                 {
-                    b.HasOne("Model.Question", null)
+                    b.HasOne("Model.QuestionModel", null)
                         .WithMany()
                         .HasForeignKey("QuestionsId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -335,7 +335,7 @@ namespace Web.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Model.Question", b =>
+            modelBuilder.Entity("Model.QuestionModel", b =>
                 {
                     b.Navigation("Answers");
                 });

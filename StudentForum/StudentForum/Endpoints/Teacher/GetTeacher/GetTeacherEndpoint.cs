@@ -32,7 +32,7 @@ namespace Web.Endpoints.Teacher
                 Name = teacher.Name,
                 Cafedra = teacher.Cafedra,
                 Tags = teacher.Tags.Select(x => x.Name).ToList(),
-                ReviewInfos = reviews.Select(x => new ReviewInfo() { Value = x.Value, ReviewUserNickName = x.User.NickName, Date = x.Date}).ToList()
+                ReviewInfo = reviews.Select(x => new GetTeacherReview() { Value = x.Value, ReviewUserNickName = x.User.NickName, Date = x.Date}).ToList()
             });
         }
 

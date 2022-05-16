@@ -13,13 +13,18 @@
                 return await HandleAsync();
             })
               .WithTags("Review")
-              .Produces<ReviewModel>();
+              .Produces<GetReviewResponse>();
         }
-
         public async Task<IResult> HandleAsync()
         {
             var review = await _reviewRepository.GetReview(_reviewId);
-            return Results.Ok(review);
+            return Results.Ok(new GetReviewResponse() 
+            { 
+                Id = review.Id,
+                Value = review.Value,
+                ReviewUserNickName = review.User.NickName,
+                Date = review.Date
+            });
         }
     }
 }

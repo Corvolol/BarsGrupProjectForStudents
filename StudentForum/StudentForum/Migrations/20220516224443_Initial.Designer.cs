@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Web.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20220512190633_Initial")]
+    [Migration("20220516224443_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -26,11 +26,14 @@ namespace Web.Migrations
 
             modelBuilder.Entity("Model.Answer", b =>
                 {
-                    b.Property<int>("AnswerId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AnswerId"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Login")
                         .HasColumnType("nvarchar(max)");
@@ -41,13 +44,10 @@ namespace Web.Migrations
                     b.Property<string>("UserEmail")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("answer")
+                    b.Property<string>("Value")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("date")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("AnswerId");
+                    b.HasKey("Id");
 
                     b.HasIndex("QuestionId");
 
@@ -77,13 +77,13 @@ namespace Web.Migrations
                     b.ToTable("Books");
                 });
 
-            modelBuilder.Entity("Model.Question", b =>
+            modelBuilder.Entity("Model.QuestionModel", b =>
                 {
-                    b.Property<int>("QuestionId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("QuestionId"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("Essence")
                         .HasColumnType("nvarchar(max)");
@@ -92,16 +92,17 @@ namespace Web.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UserEmail")
+                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
-                    b.HasKey("QuestionId");
+                    b.HasKey("Id");
 
                     b.HasIndex("UserEmail");
 
                     b.ToTable("Questions");
                 });
 
-            modelBuilder.Entity("Model.Review", b =>
+            modelBuilder.Entity("Model.ReviewModel", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -109,16 +110,16 @@ namespace Web.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
                     b.Property<int?>("TeacherId")
                         .HasColumnType("int");
 
                     b.Property<string>("UserEmail")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<DateTime>("date")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("review")
+                    b.Property<string>("Value")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -138,7 +139,7 @@ namespace Web.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<string>("name")
+                    b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -146,24 +147,21 @@ namespace Web.Migrations
                     b.ToTable("Tags");
                 });
 
-            modelBuilder.Entity("Model.Teacher", b =>
+            modelBuilder.Entity("Model.TeacherModel", b =>
                 {
-                    b.Property<int>("TeacherId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TeacherId"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<string>("cafedra")
+                    b.Property<string>("Cafedra")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("lesson")
+                    b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("TeacherId");
+                    b.HasKey("Id");
 
                     b.ToTable("Teachers");
                 });
@@ -189,7 +187,7 @@ namespace Web.Migrations
                     b.ToTable("Tickets");
                 });
 
-            modelBuilder.Entity("Model.User", b =>
+            modelBuilder.Entity("Model.UserModel", b =>
                 {
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(450)");
@@ -220,43 +218,43 @@ namespace Web.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("QuestionTag", b =>
+            modelBuilder.Entity("QuestionModelTag", b =>
                 {
-                    b.Property<int>("QuestionsQuestionId")
+                    b.Property<int>("QuestionsId")
                         .HasColumnType("int");
 
                     b.Property<int>("TagsId")
                         .HasColumnType("int");
 
-                    b.HasKey("QuestionsQuestionId", "TagsId");
+                    b.HasKey("QuestionsId", "TagsId");
 
                     b.HasIndex("TagsId");
 
-                    b.ToTable("QuestionTag");
+                    b.ToTable("QuestionModelTag");
                 });
 
-            modelBuilder.Entity("TagTeacher", b =>
+            modelBuilder.Entity("TagTeacherModel", b =>
                 {
                     b.Property<int>("TagsId")
                         .HasColumnType("int");
 
-                    b.Property<int>("TeachersTeacherId")
+                    b.Property<int>("TeachersId")
                         .HasColumnType("int");
 
-                    b.HasKey("TagsId", "TeachersTeacherId");
+                    b.HasKey("TagsId", "TeachersId");
 
-                    b.HasIndex("TeachersTeacherId");
+                    b.HasIndex("TeachersId");
 
-                    b.ToTable("TagTeacher");
+                    b.ToTable("TagTeacherModel");
                 });
 
             modelBuilder.Entity("Model.Answer", b =>
                 {
-                    b.HasOne("Model.Question", "Question")
+                    b.HasOne("Model.QuestionModel", "Question")
                         .WithMany("Answers")
                         .HasForeignKey("QuestionId");
 
-                    b.HasOne("Model.User", "User")
+                    b.HasOne("Model.UserModel", "User")
                         .WithMany("Answers")
                         .HasForeignKey("UserEmail");
 
@@ -274,26 +272,30 @@ namespace Web.Migrations
                     b.Navigation("Tag");
                 });
 
-            modelBuilder.Entity("Model.Question", b =>
+            modelBuilder.Entity("Model.QuestionModel", b =>
                 {
-                    b.HasOne("Model.User", "User")
+                    b.HasOne("Model.UserModel", "User")
                         .WithMany("Questions")
-                        .HasForeignKey("UserEmail");
+                        .HasForeignKey("UserEmail")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("Model.Review", b =>
+            modelBuilder.Entity("Model.ReviewModel", b =>
                 {
-                    b.HasOne("Model.Teacher", "Teacher")
+                    b.HasOne("Model.TeacherModel", "Teacher")
                         .WithMany("Reviews")
                         .HasForeignKey("TeacherId");
 
-                    b.HasOne("Model.User", null)
+                    b.HasOne("Model.UserModel", "User")
                         .WithMany("Reviews")
                         .HasForeignKey("UserEmail");
 
                     b.Navigation("Teacher");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Model.Ticket", b =>
@@ -305,11 +307,11 @@ namespace Web.Migrations
                     b.Navigation("Tag");
                 });
 
-            modelBuilder.Entity("QuestionTag", b =>
+            modelBuilder.Entity("QuestionModelTag", b =>
                 {
-                    b.HasOne("Model.Question", null)
+                    b.HasOne("Model.QuestionModel", null)
                         .WithMany()
-                        .HasForeignKey("QuestionsQuestionId")
+                        .HasForeignKey("QuestionsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -320,7 +322,7 @@ namespace Web.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("TagTeacher", b =>
+            modelBuilder.Entity("TagTeacherModel", b =>
                 {
                     b.HasOne("Model.Tag", null)
                         .WithMany()
@@ -328,14 +330,14 @@ namespace Web.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Model.Teacher", null)
+                    b.HasOne("Model.TeacherModel", null)
                         .WithMany()
-                        .HasForeignKey("TeachersTeacherId")
+                        .HasForeignKey("TeachersId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Model.Question", b =>
+            modelBuilder.Entity("Model.QuestionModel", b =>
                 {
                     b.Navigation("Answers");
                 });
@@ -347,12 +349,12 @@ namespace Web.Migrations
                     b.Navigation("Tickets");
                 });
 
-            modelBuilder.Entity("Model.Teacher", b =>
+            modelBuilder.Entity("Model.TeacherModel", b =>
                 {
                     b.Navigation("Reviews");
                 });
 
-            modelBuilder.Entity("Model.User", b =>
+            modelBuilder.Entity("Model.UserModel", b =>
                 {
                     b.Navigation("Answers");
 

@@ -15,7 +15,7 @@ namespace DataBase
         public Task DeleteQuestion(QuestionModel question);
         public Task<QuestionModel> GetQuestion(int questionId);
         public Task<List<Answer>> GetAnswers( int questionId);
-        public Task<User> GetUser(int questionId);
+        public Task<UserModel> GetUser(int questionId);
 
     }
 }

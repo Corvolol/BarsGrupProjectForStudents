@@ -44,21 +44,21 @@ namespace DataBase
         }
         public async Task<QuestionModel> GetQuestion(int questionId)
         {
-            var quest = await _context.Questions.FirstOrDefaultAsync(x => x.QuestionId == questionId);
+            var quest = await _context.Questions.FirstOrDefaultAsync(x => x.Id == questionId);
             return quest;
         }
 
         public async Task<List<Answer>> GetAnswers(int questionId)
         {
-            var quest = await _context.Questions.FirstOrDefaultAsync(x => x.QuestionId == questionId);
+            var quest = await _context.Questions.FirstOrDefaultAsync(x => x.Id == questionId);
             var answer_quest = quest.Answers;
             return answer_quest;
 
         }
 
-        public async Task<User> GetUser(int questionId)
+        public async Task<UserModel> GetUser(int questionId)
         {
-            var quest = await _context.Questions.FirstOrDefaultAsync(x => x.QuestionId == questionId);
+            var quest = await _context.Questions.FirstOrDefaultAsync(x => x.Id == questionId);
             var user = quest.User;
             return user;
         }

@@ -7,19 +7,14 @@ import { Question } from './components/Question';
 import { Tags } from './components/Tags';
 import { Tag } from './components/Tag';
 import { Teachers } from './components/Teachers';
-import './custom.css'
 
-export default class App extends Component {
-  static displayName = App.name;
-
-  render () {
+export default function App() {
     return (
       <>
         <Teachers />
       </>
     );
   }
-}
 
 /*
 <Router>

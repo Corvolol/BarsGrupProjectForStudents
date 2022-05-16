@@ -14,36 +14,28 @@ namespace DataBase
             _context = context;
         }
 
-        public async Task AddReview(Review review,string userEmail)
+        public async Task AddReview(ReviewModel review)
         {
-            if (review.User?.Email == userEmail)
-            {
                 _context.Reviews.Add(review);
                 await _context.SaveChangesAsync();
-            }
+            
         }
 
-        public async Task DeleteReview(Review review, string userEmail)
+        public async Task DeleteReview(ReviewModel review)
         {
-            if (review.User?.Email == userEmail)
-            {
-                Review reviewToDelete = await GetReview(review.Id);
+                ReviewModel reviewToDelete = await GetReview(review.Id);
                 _context.Reviews.Remove(reviewToDelete);
                 await _context.SaveChangesAsync();
-            }
         }
 
-        public async Task UpdateReview(Review review, string userEmail)
+        public async Task UpdateReview(ReviewModel review)
         {
-            if (review.User?.Email == userEmail)
-            {
-                Review reviewToUpdate = await GetReview(review.Id);
+                ReviewModel reviewToUpdate = await GetReview(review.Id);
                 _context.Reviews.Update(reviewToUpdate);
                 await _context.SaveChangesAsync();
-            }
         }
 
-        public async Task<Review> GetReview(int reviewId)
+        public async Task<ReviewModel> GetReview(int reviewId)
         {
             var review = await _context.Reviews.FirstOrDefaultAsync(x => x.Id == reviewId);
             return review;

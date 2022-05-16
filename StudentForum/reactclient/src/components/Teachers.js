@@ -1,9 +1,9 @@
-import React, { Component, useState } from 'react';
+import React, { useState } from 'react';
 import { ListGroup, ListGroupItem } from 'reactstrap';
 import constants from './Constants';
 
-
-export default function renderTeachers() {
+export function Teachers() {
+    
     const [teachers, setTeachers] = useState([]);
 
     function getTeachers() {
@@ -39,3 +39,7 @@ export default function renderTeachers() {
         </body>
     );
 }
+
+/*
+
+*/

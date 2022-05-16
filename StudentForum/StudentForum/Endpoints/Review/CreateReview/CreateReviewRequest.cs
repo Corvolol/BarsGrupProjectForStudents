@@ -7,9 +7,9 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Model
 {
-    public class Auth
+    public class CreateReviewRequest
     {
-        public string? Email{ get; set; }
-        public string? Password { get; set; }
+        public string? Value { get; set; }
+        public int TeacherId { get; set; }
     }
 }

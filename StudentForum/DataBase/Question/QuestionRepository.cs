@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-namespace DataBase.Model
+namespace DataBase
 {
     public class QuestionRepresitory : IQuestionRepresitory
 
@@ -18,31 +18,31 @@ namespace DataBase.Model
             _context = context;
         }
 
-        public async Task AddQuestion(Question question)
+        public async Task AddQuestion(QuestionModel question)
         {
             _context?.Questions.Add(question);
             await _context.SaveChangesAsync();
         }
 
-        public async Task DeleteQuestion(Question question)
+        public async Task DeleteQuestion(QuestionModel question)
         {
             _context.Questions.Remove(question);
             await _context.SaveChangesAsync();
         }
 
-        public async Task<List<Question>> GetAllQuestion()
+        public async Task<List<QuestionModel>> GetAllQuestion()
         {
             var questions = await _context.Questions.ToListAsync();
             return questions;
         }
 
 
-        public async Task UpdateQuestion(Question question)
+        public async Task UpdateQuestion(QuestionModel question)
         {
             _context.Questions.Update(question);
             await _context.SaveChangesAsync();
         }
-        public async Task<Question> GetQuestion(int questionId)
+        public async Task<QuestionModel> GetQuestion(int questionId)
         {
             var quest = await _context.Questions.FirstOrDefaultAsync(x => x.Id == questionId);
             return quest;

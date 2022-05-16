@@ -2,6 +2,8 @@
 {
     public class GetAllTeachersEndpoint : IEndpoint<IResult>
     {
+        public Dictionary<int, string>? IdName { get; set; }
+
         private ITeacherRepository _teacherRepository = default!;
         public void AddRoute(IEndpointRouteBuilder app)
         {
@@ -18,7 +20,11 @@
         public async Task<IResult> HandleAsync()
         {
             var teachers = await _teacherRepository.GetAllTeachers();
-            return Results.Ok(teachers);
+            var Ids = teachers.Select(x => x.Id).ToList();
+            var Names = teachers.Select(x => x.Name).ToList();
+            IdName = Ids.Select((i, n) => (i, n)).ToDictionary(x => x.i, x => Names[x.i]);
+
+            return Results.Ok(IdName);
         }
     }
 }

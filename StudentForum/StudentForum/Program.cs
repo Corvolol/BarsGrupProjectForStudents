@@ -8,7 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 //            builder
 //            .AllowAnyMethod()
 //            .AllowAnyHeader()
-//            .WithOrigins("https://localhost:3000");
+//            .WithOrigins("https://localhost:3006");
 //        });
 //});
 builder.Services.AddEndpointsApiExplorer();

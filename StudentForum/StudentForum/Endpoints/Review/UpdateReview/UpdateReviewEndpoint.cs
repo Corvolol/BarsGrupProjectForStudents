@@ -7,7 +7,7 @@
         private HttpContext _context = default!;
         public void AddRoute(IEndpointRouteBuilder app)
         {
-            app.MapPost("/update-review", async (UpdateReviewRequest reviewRequest, HttpContext context, IReviewRepository repostiroty,
+            app.MapPut("/update-review", async (UpdateReviewRequest reviewRequest, HttpContext context, IReviewRepository repostiroty,
                 ITeacherRepository teacherRepository, IUserRepository userRepository) =>
             {
                 _reviewReposiotry = repostiroty;

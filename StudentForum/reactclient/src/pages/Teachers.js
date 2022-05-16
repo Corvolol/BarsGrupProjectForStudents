@@ -1,15 +1,16 @@
 import React, { Component, useState } from 'react';
 import { ListGroup, ListGroupItem } from 'reactstrap';
-import constants from './Constants';
+import Constants from './Constants';
 
 
 export default function Teachers() {
     const [teachers, setTeachers] = useState([]);
 
     function getTeachers() {
-        const url = constants.API_URL_GET_ALL_TEACHERS;
-
+        const url = Constants.API_URL_GET_ALL_TEACHERS;
+        console.log(url);
         fetch(url, {
+
             method: 'GET'
         })
             .then(response => response.json())

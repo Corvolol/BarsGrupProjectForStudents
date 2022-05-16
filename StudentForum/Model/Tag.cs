@@ -13,7 +13,7 @@ namespace Model
         public string? Name { get; set; }
         public List<Ticket>? Tickets { get; set; }
         public List<Book>? Books { get; set; } = new();
-        public List<Question> Questions { get; set; } = new();
+        public List<QuestionModel> Questions { get; set; } = new();
         public List<TeacherModel> Teachers { get; set; } = new();
 
     }

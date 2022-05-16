@@ -1,18 +1,19 @@
-﻿
+﻿using Microsoft.AspNetCore.Mvc;
+
 namespace Web.Endpoints.Question.QuestionAdd
 {
     public class QuestionEndpointAdd : IEndpoint<IResult,QuestionRequest>
     {
 
         private HttpContext _context = default!;
-        private IQuestionRepresitory _questionRepository = default!;
+        private IQuestionRepository _questionRepository = default!;
         private ITagRepository _tagRepository = default!;
-        private IUserRepository _userRepository = default;
+        private IUserRepository _userRepository = default!;
 
         public void AddRoute(IEndpointRouteBuilder app)
         {
 
-            app.MapGet("/question/add", async (HttpContext context, IQuestionRepresitory questionRepresitory, QuestionRequest questionRequest, ITagRepository tagRepository, IUserRepository userRepository) =>
+            app.MapGet("/question/add", async ([FromBody]QuestionRequest questionRequest,[FromServices]HttpContext context, [FromServices] IQuestionRepository questionRepresitory, [FromServices] ITagRepository tagRepository, [FromServices] IUserRepository userRepository) =>
             {
                 _context = context;
                 _questionRepository = questionRepresitory;

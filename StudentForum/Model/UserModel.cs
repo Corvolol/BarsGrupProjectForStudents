@@ -29,7 +29,7 @@ namespace Model
 
         public string? Password { get; set; }
 
-        public List<Question> Questions { get; set; } = new();
+        public List<QuestionModel> Questions { get; set; } = new();
         public List<Answer> Answers { get; set; } = new();
         public List<ReviewModel> Reviews { get; set; } = new();
     }

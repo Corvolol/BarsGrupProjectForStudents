@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DataBase
 {
-    public interface IQuestionRepresitory
+    public interface IQuestionRepository
 
     {
         public Task AddQuestion(QuestionModel question);

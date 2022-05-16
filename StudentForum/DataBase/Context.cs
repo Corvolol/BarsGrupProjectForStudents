@@ -25,5 +25,10 @@ namespace DataBase
 
             //optionsBuilder.UseSqlServer("Data Source=studentforum.db");
         }
+        //protected override void OnModelCreating(ModelBuilder modelBuilder)
+        //{
+        //    Teachers.Add(new TeacherModel(){Name = "Oleg",Cafedra = "1" });
+        //    base.OnModelCreating(modelBuilder);
+        //}
     }
 }

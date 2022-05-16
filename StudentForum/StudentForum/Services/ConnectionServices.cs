@@ -9,6 +9,9 @@
             services.AddScoped<IReviewRepository, ReviewRepository>();
             services.AddSingleton<IGenerateUserJWT, GenerateUserJWT>();
             services.AddSingleton<IHashingPassword, HashingPassword>();
+            services.AddScoped<IQuestionRepository, QuestionRepresitory>();
+
+
             return services;
         }
     }

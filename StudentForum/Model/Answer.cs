@@ -17,7 +17,7 @@ namespace Model
 
         public DateTime Date { get; set; }
 
-        public Question? Question { get; set; }
+        public QuestionModel? Question { get; set; }
         public UserModel? User { get; set; }
     }
 

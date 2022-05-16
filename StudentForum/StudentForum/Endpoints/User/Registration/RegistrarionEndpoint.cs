@@ -12,7 +12,7 @@
                 _generateUserJWT = generateUserJWT;
                 _userRepostiroty = userRepostiroty;
                 _hashingPassword = hashingPassword;
-                return HandleAsync(registrationRequest);
+                return await HandleAsync(registrationRequest);
             })
              .WithTags("User")
              .Produces<RegistrationResponce>();

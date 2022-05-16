@@ -11,7 +11,7 @@
              {
                  _context = context;
                  _userRepository = userRepository;
-                 return HandleAsync(userUpdateRequest);
+                 return await  HandleAsync(userUpdateRequest);
              }).WithTags("User")
                 .Produces<UserUpdateResponce>()
                 .RequireAuthorization();

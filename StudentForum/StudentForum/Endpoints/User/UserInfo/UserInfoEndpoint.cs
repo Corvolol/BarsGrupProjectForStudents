@@ -10,7 +10,7 @@
             {
                 _context = context;
                 _userRepository = userRepository;
-                return HandleAsync();
+                return await HandleAsync();
             })
               .WithTags("User")
               .Produces<UserInfoResponce>()

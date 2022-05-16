@@ -1,4 +1,4 @@
-﻿namespace Web.Endpoints.Teacher
+﻿namespace Web.Endpoints.Teacher.GetAllTeachers
 {
     public class GetAllTeachersEndpoint : IEndpoint<IResult>
     {
@@ -10,21 +10,19 @@
             app.MapGet("/get-all-teachers", async (ITeacherRepository repostiroty) =>
             {
                 _teacherRepository = repostiroty;
-                return HandleAsync();
+                return await HandleAsync();
             })
               .WithTags("Teacher")
-              .Produces<ReviewModel>(StatusCodes.Status200OK);
+              .Produces<GetAllTeachersResponse>();
             //.RequireAuthorization();
         }
 
         public async Task<IResult> HandleAsync()
         {
-            var teachers = await _teacherRepository.GetAllTeachers();
-            var Ids = teachers.Select(x => x.Id).ToList();
-            var Names = teachers.Select(x => x.Name).ToList();
-            IdName = Ids.Select((i, n) => (i, n)).ToDictionary(x => x.i, x => Names[x.i]);
+            var Teachers = await _teacherRepository.GetAllTeachers();
+            var responce = new GetAllTeachersResponse() { ListPair = Teachers.Select(x => new PairTeacherIdName() { Id = x.Id, Name = x.Name }).ToList() };
 
-            return Results.Ok(IdName);
+            return Results.Ok(responce);
         }
     }
 }

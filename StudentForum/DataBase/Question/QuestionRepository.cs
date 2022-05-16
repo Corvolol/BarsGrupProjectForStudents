@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DataBase
 {
-    public class QuestionRepresitory : IQuestionRepresitory
+    public class QuestionRepresitory : IQuestionRepository
 
     {
         private readonly Context _context;

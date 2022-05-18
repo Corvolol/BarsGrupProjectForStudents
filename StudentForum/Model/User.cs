@@ -13,24 +13,30 @@ namespace Model
     public class User
     {
         [Key]
-        public string Email { get; set; } = null!;
+        public virtual  string Email { get; set; } = null!;
         
-        public string? NickName { get; set; }
+        public virtual string? NickName { get; set; }
 
-        public string? Name { get; set; }
+        public virtual  string? Name { get; set; }
 
-        public string? LastName{ get; set; }
+        public virtual  string? LastName{ get; set; }
 
-        public int? Groupnumber { get; set; }
+        public virtual int? Groupnumber { get; set; }
 
-        public string? Faculty { get; set; }
+        public virtual string? Faculty { get; set; }
 
-        public string? Speciality { get; set; }
+        public virtual string? Speciality { get; set; }
 
-        public string? Password { get; set; }
+        public virtual string? Password { get; set; }
 
+<<<<<<< Updated upstream:StudentForum/Model/User.cs
         public List<Question>? Questions { get; set; }
         public List<Answer>? Answers { get; set; }
         public List<Review>? Reviews { get; set; }
+=======
+        public virtual  List<Question> Questions { get; set; } = new();
+        public virtual List<Answer> Answers { get; set; } = new();
+        public virtual  List<ReviewModel> Reviews { get; set; } = new();
+>>>>>>> Stashed changes:StudentForum/Model/UserModel.cs
     }
 }

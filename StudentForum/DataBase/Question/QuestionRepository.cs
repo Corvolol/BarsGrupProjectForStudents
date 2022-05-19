@@ -48,7 +48,7 @@ namespace DataBase
             return quest;
         }
 
-        public async Task<List<Answer>> GetAnswers(int questionId)
+        public async Task<List<AnswerModel>> GetAnswers(int questionId)
         {
             var quest = await _context.Questions.FirstOrDefaultAsync(x => x.Id == questionId);
             var answer_quest = quest.Answers;

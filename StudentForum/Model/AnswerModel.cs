@@ -7,14 +7,14 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Model
 {
-    public class Answer
+    public class AnswerModel
     {
         [Key] public int Id { get; set; }
         public string? Login { get; set; }
         public string? Value { get; set; }
         public DateTime Date { get; set; }
-        public QuestionModel? Question { get; set; }
-        public UserModel? User { get; set; }
+        public virtual QuestionModel? Question { get; set; }
+        public virtual UserModel? User { get; set; }
     }
 
      

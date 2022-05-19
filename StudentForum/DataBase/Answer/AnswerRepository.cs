@@ -6,29 +6,29 @@ using System.Threading.Tasks;
 
 namespace DataBase
 {
-    internal class AnswerRepresitory : IAnswerRepresitory
+    internal class AnswerRepository : IAnswerRepository
     {
         private readonly Context _context;
 
-        public AnswerRepresitory(Context context)
+        public AnswerRepository(Context context)
         {
             _context = context;
         }
 
-        public async Task AddAnswer(Answer answer)
+        public async Task AddAnswer(AnswerModel answer)
         {
             _context.Answers.Add(answer);
             await _context.SaveChangesAsync();
         }
 
-        public async Task DeleteAnswer(Answer answer)
+        public async Task DeleteAnswer(AnswerModel answer)
         {
            _context.Answers.Remove(answer);
             await _context.SaveChangesAsync();
 
         }
 
-        public async Task<Answer> GetUserOfAnswer(int answerId)
+        public async Task<AnswerModel> GetAnswer(int answerId)
         {
             var user = await _context.Answers.FirstOrDefaultAsync(x => x.Id ==  answerId);
 
@@ -36,7 +36,7 @@ namespace DataBase
             
         }
 
-        public async Task UpdateAnswer(Answer answer)
+        public async Task UpdateAnswer(AnswerModel answer)
         {
             _context.Answers.Update(answer);
             await _context.SaveChangesAsync();

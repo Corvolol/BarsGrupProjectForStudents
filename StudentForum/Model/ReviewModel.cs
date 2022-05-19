@@ -12,7 +12,7 @@ namespace Model
         [Key] public int Id { get; set; }
         public string? Value { get; set; }
         public DateTime Date { get; set; }
-        public TeacherModel? Teacher { get; set; }
-        public UserModel? User { get; set; }
+        public virtual TeacherModel? Teacher { get; set; }
+        public virtual UserModel? User { get; set; }
     }
 }

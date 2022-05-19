@@ -1,6 +1,6 @@
 ﻿namespace Web.Endpoints.Review.GetReview
 {
-    public class GetReviewEndpoint : IEndpoint<IResult>
+    public class GetQuestionEndpoint : IEndpoint<IResult>
     {
         private IReviewRepository _reviewRepository = default!;
         private int _reviewId;

@@ -1,6 +1,6 @@
 ﻿namespace Model
 {
-    public class QuestionRequest
+    public class CreateAnswerRequest
     {
         public string? Essence { get; set; }
         public string? Info { get; set; }

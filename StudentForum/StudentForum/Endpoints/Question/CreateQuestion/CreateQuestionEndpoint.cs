@@ -2,7 +2,7 @@
 
 namespace Web.Endpoints.Question.QuestionAdd
 {
-    public class QuestionEndpointAdd : IEndpoint<IResult,QuestionRequest>
+    public class CreateAnswerEndpoint : IEndpoint<IResult,CreateAnswerRequest>
     {
 
         private HttpContext _context = default!;
@@ -13,7 +13,7 @@ namespace Web.Endpoints.Question.QuestionAdd
         public void AddRoute(IEndpointRouteBuilder app)
         {
 
-            app.MapGet("/question/add", async ([FromBody]QuestionRequest questionRequest,[FromServices]HttpContext context, [FromServices] IQuestionRepository questionRepresitory, [FromServices] ITagRepository tagRepository, [FromServices] IUserRepository userRepository) =>
+            app.MapGet("/question/add", async ([FromBody]CreateAnswerRequest questionRequest,[FromServices]HttpContext context, [FromServices] IQuestionRepository questionRepresitory, [FromServices] ITagRepository tagRepository, [FromServices] IUserRepository userRepository) =>
             {
                 _context = context;
                 _questionRepository = questionRepresitory;
@@ -23,11 +23,11 @@ namespace Web.Endpoints.Question.QuestionAdd
 
             })
             .WithTags("Question")
-            .Produces<QuestionRequest>()
+            .Produces<CreateAnswerRequest>()
             .RequireAuthorization();
         }
 
-        public async Task<IResult> HandleAsync(QuestionRequest questionRequest)
+        public async Task<IResult> HandleAsync(CreateAnswerRequest questionRequest)
         {   
             var ListTags = new List<Tag>(await Task.WhenAll(questionRequest.ListTag.Select((questionRequest) => _tagRepository.GetTag(questionRequest))));
 

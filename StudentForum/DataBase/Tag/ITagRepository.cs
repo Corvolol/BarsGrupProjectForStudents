@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -8,10 +9,10 @@ namespace DataBase
 {
     public interface ITagRepository
     {
-        public Task AddTag(Tag tag);
-        public Task DeleteTag(Tag tag);
-        public Task UpdateTag(Tag tag);
-        public Task<Tag> GetTag(int tagId);
-        public Task<List<Tag>> GetAllTag();
+        public Task AddTag(TagModel tag);
+        public Task DeleteTag(TagModel tag);
+        public Task UpdateTag(TagModel tag);
+        public Task<TagModel> GetTag(int tagId);
+        public Task<List<TagModel>> GetAllTag();
     }
 }

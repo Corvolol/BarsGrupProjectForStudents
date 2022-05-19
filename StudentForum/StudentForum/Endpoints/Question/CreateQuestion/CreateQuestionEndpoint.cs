@@ -29,7 +29,7 @@ namespace Web.Endpoints.Question.QuestionAdd
 
         public async Task<IResult> HandleAsync(CreateAnswerRequest questionRequest)
         {   
-            var ListTags = new List<Tag>(await Task.WhenAll(questionRequest.ListTag.Select((questionRequest) => _tagRepository.GetTag(questionRequest))));
+            var ListTags = new List<TagModel>(await Task.WhenAll(questionRequest.ListTag.Select((questionRequest) => _tagRepository.GetTag(questionRequest))));
 
             var NewQuestion = new QuestionModel()
             {

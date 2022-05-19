@@ -12,7 +12,7 @@ namespace Model
         [Key] public int Id { get; set; }
         public string? Essence { get; set; }
         public string? Info { get; set; }
-        public List<Tag> Tags { get; set; } = new();
+        public List<TagModel> Tags { get; set; } = new();
         public List<AnswerModel> Answers { get; set; } = new();
         public virtual UserModel User { get; set; } = new();
     }

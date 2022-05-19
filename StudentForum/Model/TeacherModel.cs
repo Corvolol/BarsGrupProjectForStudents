@@ -13,7 +13,7 @@ namespace Model
         public string? Name { get; set; }
         public string? Cafedra { get; set; }
         public List<ReviewModel> Reviews { get; set; } = new();
-        public List<Tag>? Tags { get; set; } = new();
+        public List<TagModel>? Tags { get; set; } = new();
     }
 
 }

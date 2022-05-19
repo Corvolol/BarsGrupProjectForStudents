@@ -32,7 +32,7 @@ namespace Model
 <<<<<<< Updated upstream:StudentForum/Model/User.cs
         public List<Question>? Questions { get; set; }
         public List<Answer>? Answers { get; set; }
-        public List<Review>? Reviews { get; set; }
+        public List<ReviewModel>? Reviews { get; set; }
 =======
         public virtual  List<Question> Questions { get; set; } = new();
         public virtual List<Answer> Answers { get; set; } = new();

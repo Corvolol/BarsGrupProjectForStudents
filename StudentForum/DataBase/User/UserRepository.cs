@@ -61,12 +61,12 @@ namespace DataBase
             await _context.SaveChangesAsync();
         }
 
-        public async Task UpdateUser(string email, Review review)
+        public async Task UpdateUser(string email, ReviewModel review)
         {
             var user = await _context.Users.FirstOrDefaultAsync(x => x.Email == email);
             if (user.Reviews == null)
             {
-                user.Reviews = new List<Review>();
+                user.Reviews = new List<ReviewModel>();
             }
             user.Reviews.Add(review);
             await _context.SaveChangesAsync();

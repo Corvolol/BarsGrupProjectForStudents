@@ -8,7 +8,7 @@ namespace DataBase
         public DbSet<User> Users { get; set; } = null!;
         public DbSet<Answer> Answers { get; set; } = null!;
         public DbSet<Question> Questions { get; set; } = null!;
-        public DbSet<Review> Reviews { get; set; } = null!;
+        public DbSet<ReviewModel> Reviews { get; set; } = null!;
         public DbSet<TagModel> Tags { get; set; } = null!;
         public DbSet<Teacher> Teachers { get; set; } = null!;
         public DbSet<Ticket> Tickets { get; set; } = null!;

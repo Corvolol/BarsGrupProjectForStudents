@@ -13,7 +13,7 @@ namespace DataBase
         public Task UpdateUser (User user);
         public Task UpdateUser(string email,Question question);
         public Task UpdateUser(string email,Answer answer);
-        public Task UpdateUser(string email,Review review);
+        public Task UpdateUser(string email,ReviewModel review);
         public Task DeleteUser (string email);
     }
 }

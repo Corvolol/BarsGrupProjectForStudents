@@ -11,9 +11,9 @@ namespace Model
     {
 
         [Key] 
-        public virtual int Id { get; set; }
-        public virtual  string? Value { get; set; }
-        public virtual TagModel? Tag { get; set; }
+        public  int Id { get; set; }
+        public   string? Value { get; set; }
+        public  TagModel? Tag { get; set; }
 
        
 

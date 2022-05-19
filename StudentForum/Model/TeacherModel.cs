@@ -10,11 +10,11 @@ namespace Model
     public class TeacherModel
     {
         [Key] 
-        public virtual  int Id { get; set; }
-        public virtual string? Name { get; set; }
-        public virtual string? Cafedra { get; set; }
-        public virtual  List<ReviewModel> Reviews { get; set; } = new();
-        public virtual  List<Tag>? Tags { get; set; } = new();
+        public  int Id { get; set; }
+        public  string? Name { get; set; }
+        public  string? Cafedra { get; set; }
+        public   List<ReviewModel> Reviews { get; set; } = new();
+        public  List<TagModel>? Tags { get; set; } = new();
     }
 
 }
